@@ -34,21 +34,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/btnOlvido"
+           android:text="¿Olvidaste la contraseña?"
+           android:backgroundTint="@color/white"
+           android:textColor="@color/black">
+       </Button>
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="¿Olvidaste la contraseña?">
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="40dp"
-            android:text="Registrarse">
-
-        </TextView>
+            android:id="@+id/btnRegistrarse"
+            android:text="Registrarme"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black">
+        </Button>
     </LinearLayout>
 
     <Button

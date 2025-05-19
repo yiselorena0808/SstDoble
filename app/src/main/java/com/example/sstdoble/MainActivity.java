@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sstdoble.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnLogin;
+    Button btnLogin,btnRegistrarse,btnOlvido;
     EditText etCorreo, etPassword;
 
     ActivityMainBinding binding;
@@ -31,10 +31,20 @@ public class MainActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Menu.class));
 
-            startActivity(new Intent(MainActivity.this, Registrarme.class));
-
-
+            }
+        });
+        btnOlvido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Registrarme.class));
+            }
+        });
+        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Registrarme.class));
             }
         });
     }
