@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.example.sstdoble.databinding.ActivityListaGestionBinding;
+import com.example.sstdoble.databinding.ActivityRegistrarmeBinding;
 
 public class ListaGestion extends AppCompatActivity {
 
@@ -20,6 +21,10 @@ public class ListaGestion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_lista_gestion);
+
+        binding = ActivityListaGestionBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         binding.btncrear.setOnClickListener(new View.OnClickListener() {
             @Override
