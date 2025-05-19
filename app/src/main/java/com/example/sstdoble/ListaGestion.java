@@ -9,8 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.sstdoble.databinding.ActivityListaGestionBinding;
 import com.example.sstdoble.databinding.ActivityRegistrarmeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaGestion extends AppCompatActivity {
 
@@ -25,6 +31,23 @@ public class ListaGestion extends AppCompatActivity {
         binding = ActivityListaGestionBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // Configurar RecyclerView
+        RecyclerView recyclerView = binding.recyclerViewListaChequeo;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<ListaGestionItem> lista = new ArrayList<>();
+        lista.add(new ListaGestionItem("Juan Pérez", "2025-05-19"));
+        lista.add(new ListaGestionItem("Ana Torres", "2025-05-18"));
+
+        ListaGestionAdapter adapter = new ListaGestionAdapter(this, lista);
+        recyclerView.setAdapter(adapter);
 
         binding.btncrear.setOnClickListener(new View.OnClickListener() {
             @Override

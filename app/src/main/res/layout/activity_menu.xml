@@ -54,32 +54,35 @@
             android:lineSpacingExtra="4dp" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_input_layout"
-            android:layout_width="350dp"
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="16dp"
-            android:hint="Buscar..."
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@android:drawable/ic_menu_search"
-            app:startIconTint="@color/Verde"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxStrokeColor="@color/Verde">
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:background="@color/white"
+            android:layout_marginBottom="6dp"
+            android:elevation="34dp"
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
+            <EditText
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@android:color/black"
-                android:padding="10dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                android:hint="Buscar ..."
+                android:padding="8dp"
+                android:background="@android:color/transparent"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_search"
+                android:backgroundTint="#888888" />
+        </LinearLayout>
+
+
 
         <ScrollView
             android:layout_width="match_parent"
@@ -143,7 +146,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-
+                            android:src="@drawable/img_8"
                             android:scaleType="centerInside" />
 
                         <com.google.android.material.button.MaterialButton
@@ -273,7 +276,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-
+                            android:src="@drawable/img_9"
                             android:scaleType="centerInside" />
 
                         <com.google.android.material.button.MaterialButton
