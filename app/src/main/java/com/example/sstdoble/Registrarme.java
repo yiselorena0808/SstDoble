@@ -1,5 +1,6 @@
 package com.example.sstdoble;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -25,6 +26,8 @@ public class Registrarme extends AppCompatActivity {
         binding.btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(Registrarme.this, Menu.class));
 
             }
         });
