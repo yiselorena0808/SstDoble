@@ -1,0 +1,47 @@
+<resources>
+    <string name="actividades_l_dicas">Actividades Ludicas</string>
+    <string name="usuario">Espacio ver nombre de usuario</string>
+    <string name="nombre_de_la_actividad">Espacio de ver nombre de la actividad</string>
+    <string name="fecha_de_la_actividad">Espacio de ver fecha de la actividad</string>
+    <string name="descripcion_de_la_actividad">Espacio de ver descripcion de la actividad</string>
+    <string name="subir_imagen">Espacio para ver imagen de la  actividad</string>
+    <string name="subir_video">Espacio para ver video de la actividad</string>
+    <string name="enviar_evidencia">Enviar evidencia</string>
+    <string name="app_name">Actividades Ludicas</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="nombre_actividad">Nombre de la actividad</string>
+    <string name="fecha_actividad">Fecha de la actividad</string>
+    <string name="descripcion_actividad">Descripción de la actividad</string>
+    <string name="subir_imagen_video">Subir imagen o video</string>
+    <string name="subir_archivos">Subir archivos</string>
+    <string name="enviar_evidencias">Enviar evidencias</string>
+    <string name="icono_izquierda">Icono izquierda</string>
+    <string name="icono_derecha">Icono derecha</string>
+    <string name="asesoramiento">ASESORAMIENTO</string>
+    <string name="buscar">Buscar</string>
+    <string name="informaci_n">Información</string>
+    <string name="opcion_2">Opción 2</string>
+    <string name="contenido_de_la_opcion_2">Contenido de la opción 2</string>
+    <string name="opcion_1">Opción 1</string>
+    <string name="contenido_de_la_opcion_1">Contenido de la opción 1</string>
+    <string name="opci_n_3">Opción 3</string>
+    <string name="contenido_de_la_opcion_3">Contenido de la opción 3</string>
+    <string name="documentos">Documentos</string>
+    <string name="ver_documento_1">Ver documento 1</string>
+    <string name="agregar_nuevo_enlace">Agregar nuevo enlace:</string>
+    <string name="agregar_link">Agregar link</string>
+    <string name="ver_documento_2">Ver documento 2</string>
+    <string name="agregar_nuevo_enlace1">Agregar nuevo enlace:</string>
+    <string name="agregar_link1">Agregar link</string>
+    <string name="documentos1">Documentos</string>
+    <string name="ver_documento_3">Ver documento 3</string>
+    <string name="agregar_nuevo_enlace2">Agregar nuevo enlace:</string>
+    <string name="agregar_link2">Agregar link</string>
+
+    <string-array name="estados_array">
+        <item>Activo</item>
+        <item>Inactivo</item>
+        <item>En revisión</item>
+    </string-array>
+
+</resources>

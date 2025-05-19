@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/Piel"
+    tools:context=".FormChequeo">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/list"
+            android:layout_marginLeft="10dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/img" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Crear Lista de Chequeo"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="#333333" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/scroll_brackground"
+        android:padding="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Nombre Usuario -->
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre Usuario:"
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Ingrese nombre usuario"
+                android:padding="10dp"/>
+
+            <!-- Fecha y Hora -->
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha y Hora:"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:hint="Fecha"
+                    android:padding="10dp"
+                    android:background="#FFFFFF"/>
+
+                <Space android:layout_width="16dp" android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="40dp"
+                    android:hint="Hora"
+                    android:padding="10dp"
+                    android:background="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Modelo y Marca -->
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Modelo:"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Ingrese Modelo"
+                android:padding="10dp"/>
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Marca:"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFFFFF"
+                android:hint="Ingrese Marca"
+                android:padding="10dp"/>
+
+            <!-- SOAT y Tecnicomecánica -->
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Documentos:"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOAT:"
+                        android:textColor="#333333"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"/>
+                    <RadioButton android:text="Sí" android:layout_height="20dp"
+                        android:layout_width="50dp"/>
+                    <RadioButton android:text="No" android:layout_height="20dp"
+                        android:layout_width="60dp"/>
+                </RadioGroup>
+
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Técnico:"
+                        android:textColor="#333333"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"/>
+                    <RadioButton android:text="Sí" android:layout_height="20dp"
+                        android:layout_width="50dp"/>
+                    <RadioButton android:text="No" android:layout_height="20dp"
+                        android:layout_width="60dp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kilometraje:"
+                android:textColor="#333333"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="number"
+                android:background="#FFFFFF"
+                android:hint="Kilometraje"
+                android:padding="10dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1"
+                android:shrinkColumns="1"
+                android:layout_marginBottom="24dp">
+
+                <TableRow android:background="#DDDDDD">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="CARACTERISTICAS"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="VERIFICADO"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:padding="8dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Luz"
+                        android:padding="8dp"
+                        android:layout_weight="1"/>
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton android:text="Sí" android:layout_height="20dp"
+                            android:layout_width="50dp"/>
+                        <RadioButton android:text="No" android:layout_height="20dp"
+                            android:layout_width="60dp"/>
+                    </RadioGroup>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Frenos"
+                        android:padding="8dp"
+                        android:layout_weight="1"/>
+
+                    <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton android:text="Sí" android:layout_height="20dp"
+                            android:layout_width="50dp"/>
+                        <RadioButton android:text="No" android:layout_height="20dp"
+                            android:layout_width="60dp"/>
+                    </RadioGroup>
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_Chequeo"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/Verde"
+        android:text="Enviar Lista Chequeo"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CrearBlog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Cabecera -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:src="@drawable/list"
+                android:layout_marginLeft="10dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/img" />
+
+        </LinearLayout>
+
+        <!-- Título de la publicación -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nueva Publicación"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Formulario para crear la publicación -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_background"
+            android:elevation="3dp"
+            android:padding="20dp">
+
+            <!-- Título de la publicación -->
+            <EditText
+                android:id="@+id/txttitu"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/cuadrado"
+                android:hint="Título de la publicación"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Imagen de la publicación -->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/cuadrado"
+                android:text="Añadir Imagen"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Descripción -->
+            <EditText
+                android:id="@+id/txtdesc"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/cuadrado"
+                android:hint="Añadir descripción"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Botones Adjuntar y Subir Archivo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/Verde"
+                    android:text="Adjuntar"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/cuadrado"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="2"
+                    android:text="Adjunta un archivo"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="10dp"/>
+            </LinearLayout>
+
+            <!-- Botón Publicar -->
+            <Button
+                android:id="@+id/btnPubli"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/Verde"
+                android:text="Publicar"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/cuadrado"/>
+        </LinearLayout>
+
+        <!-- Botón Regresar -->
+        <Button
+            android:id="@+id/btnRegreso"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/back"
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/cuadrado"/>
+    </LinearLayout>
+
+</LinearLayout>
