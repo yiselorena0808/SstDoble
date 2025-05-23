@@ -16,8 +16,8 @@ import java.util.List;
 
 public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdapter.ViewHolder> {
 
-    private Context context;
-    private List<ListaReporterItem> lista;
+    private final Context context;
+    private final List<ListaReporterItem> lista;
 
     public ListaReportesAdapter(Context context, List<ListaReporterItem> lista) {
         this.context = context;
@@ -27,7 +27,7 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_item_lista_chequeo, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_item_lista_reporte, parent, false);
         return new ViewHolder(view);
     }
 
@@ -36,6 +36,7 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
         ListaReporterItem item = lista.get(position);
         holder.txtNombreFecha.setText(item.getNombre() + " - " + item.getFecha());
 
+        // Acción del botón "Detalles"
         holder.btnDetalles.setOnClickListener(v -> {
             Intent intent = new Intent(context, FormChequeo.class);
             intent.putExtra("nombre", item.getNombre());
@@ -43,8 +44,9 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
             context.startActivity(intent);
         });
 
+        // Acción del botón de descarga
         holder.btnDownload.setOnClickListener(v -> {
-            // Lógica para descarga, si la deseas implementar
+            // Aquí podrías agregar lógica de descarga si lo necesitas
         });
     }
 
@@ -62,7 +64,8 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
             super(itemView);
             txtNombreFecha = itemView.findViewById(R.id.txtNombreFecha);
             btnDetalles = itemView.findViewById(R.id.btnDetalles);
-            btnDownload = itemView.findViewById(R.id.btnDownloadl);
+            btnDownload = itemView.findViewById(R.id.btnDownloadl); // Asegúrate que este ID coincida exactamente con el XML
         }
     }
 }
+
