@@ -2,16 +2,18 @@ package com.example.sstdoble;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sstdoble.databinding.ActivityListaReportesBinding;
-import com.example.sstdoble.databinding.ActivityMenuBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListaReportes extends AppCompatActivity {
 
@@ -21,18 +23,30 @@ public class ListaReportes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_lista_reportes);
-
         binding = ActivityListaReportesBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(binding.getRoot());
 
-        binding.imgButtonCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ListaReportes.this, CreaReporte.class));
-            }
+        // Aplicar márgenes para barras del sistema
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
 
+        // Configurar RecyclerView
+        RecyclerView recyclerView = binding.recyclerViewListaReportes;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<ListaReporterItem> lista = new ArrayList<>();
+        lista.add(new ListaReporterItem("Juan Pérez", "2025-05-19"));
+        lista.add(new ListaReporterItem("Ana Torres", "2025-05-18"));
+
+        ListaReportesAdapter adapter = new ListaReportesAdapter(this, lista);
+        recyclerView.setAdapter(adapter);
+
+        // Botón para crear nuevo reporte
+        binding.imgButtonCrear.setOnClickListener(v -> {
+            startActivity(new Intent(ListaReportes.this, CreaReporte.class));
+        });
     }
 }

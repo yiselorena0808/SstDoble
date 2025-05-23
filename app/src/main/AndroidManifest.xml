@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SstDoble"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ListaReporteItem"
+            android:exported="false" />
         <activity
             android:name=".Registrarme"
             android:exported="false" />
