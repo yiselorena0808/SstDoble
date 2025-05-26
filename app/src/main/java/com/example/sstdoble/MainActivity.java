@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btnOlvido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Olvidaste_contrasenia.class));
+                startActivity(new Intent(MainActivity.this,Registrarme.class));
             }
         });
         binding.btnRegistrarse.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     Intent intent = new Intent(MainActivity.this, Registrarme.class);
-                    intent.putExtra("correo", correo); // Si quieres pasar el correo
+                    intent.putExtra("correo", correo);
                     startActivity(intent);
                 }
 
