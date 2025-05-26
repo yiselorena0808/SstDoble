@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        btnOlvido.setOnClickListener(new View.OnClickListener() {
+        binding.btnOlvido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,Registrarme.class));
             }
         });
-        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+        binding.btnRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,Registrarme.class));
