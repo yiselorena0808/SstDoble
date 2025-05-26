@@ -38,7 +38,7 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
 
         // Acción del botón "Detalles"
         holder.btnDetalles.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FormChequeo.class);
+            Intent intent = new Intent(context, CreaReporte.class);
             intent.putExtra("nombre", item.getNombre());
             intent.putExtra("fecha", item.getFecha());
             context.startActivity(intent);
