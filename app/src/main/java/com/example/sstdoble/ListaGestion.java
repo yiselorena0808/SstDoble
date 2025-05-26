@@ -39,7 +39,7 @@ public class ListaGestion extends AppCompatActivity {
         });
 
         // Configurar RecyclerView
-        RecyclerView recyclerView = binding.recyclerViewListaChequeo;
+        RecyclerView recyclerView = binding.recyclerViewListaGestion;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<ListaGestionItem> lista = new ArrayList<>();

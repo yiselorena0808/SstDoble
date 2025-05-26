@@ -103,7 +103,7 @@
                     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewListaChequeo"
+                        android:id="@+id/recyclerViewListaActividades"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

@@ -36,7 +36,7 @@ public class ListaActividades extends AppCompatActivity {
         });
 
         // Configurar RecyclerView
-        RecyclerView recyclerView = binding.recyclerViewListaChequeo;
+        RecyclerView recyclerView = binding.recyclerViewListaActividades;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<ListaChequeoItem> lista = new ArrayList<>();
