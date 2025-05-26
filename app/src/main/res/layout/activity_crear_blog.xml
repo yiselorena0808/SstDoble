@@ -76,6 +76,7 @@
 
             <!-- Imagen de la publicación -->
             <Button
+                android:id="@+id/btnAgregarImagen"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/cuadrado"

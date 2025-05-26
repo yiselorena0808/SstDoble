@@ -85,7 +85,8 @@
         android:paddingBottom="16dp">
 
         <!-- Publicación 1 -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPublicaciones1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -166,10 +167,10 @@
                     app:backgroundTint="@color/Verde"
                     app:cornerRadius="8dp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <!-- Publicación 2 -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -251,7 +252,7 @@
                     app:backgroundTint="@color/Verde"
                     app:cornerRadius="8dp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
     </ScrollView>
 
