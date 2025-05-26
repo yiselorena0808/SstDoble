@@ -7,6 +7,8 @@ import android.provider.MediaStore;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,6 +19,7 @@ import com.example.sstdoble.databinding.ActivityCrearBlogBinding;
 
 public class CrearBlog extends AppCompatActivity {
 
+    private ActivityResultLauncher<Intent> pickImageLauncher;
     ActivityCrearBlogBinding binding;
 
     private Uri imagenUri = null;
@@ -56,28 +59,22 @@ public class CrearBlog extends AppCompatActivity {
             startActivityForResult(intent, 100);
         });
 
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
+        pickImageLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        imagenUri = result.getData().getData();
 
-            if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-                imagenUri = data.getData();
-                // Puedes mostrar la imagen en un ImageView si quieres
-                binding.btnAgregarImagen.setBackground(null);
-                binding.btnAgregarImagen.setText("");
-                binding.btnAgregarImagen.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-                binding.btnAgregarImagen.setBackgroundResource(0);
-                binding.btnAgregarImagen.setBackground(null);
-                binding.btnAgregarImagen.setCompoundDrawables(null, null, null, null);
-                binding.btnAgregarImagen.setCompoundDrawablePadding(0);
-                binding.btnAgregarImagen.setPadding(0,0,0,0);
-                binding.btnAgregarImagen.setBackgroundResource(0);
-                binding.btnAgregarImagen.setCompoundDrawables(null, null, null, null);
-                binding.btnAgregarImagen.setBackground(null);
-
-                // Mejor aún, usa un ImageView en lugar del botón si quieres mostrar la vista previa.
-            }
-        }
+                  
+                        binding.btnAgregarImagen.setBackground(null);
+                        binding.btnAgregarImagen.setText("");
+                        binding.btnAgregarImagen.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                        binding.btnAgregarImagen.setBackgroundResource(0);
+                        binding.btnAgregarImagen.setCompoundDrawablePadding(0);
+                        binding.btnAgregarImagen.setPadding(0, 0, 0, 0);
+                    }
+                }
+        );
 
 
 
