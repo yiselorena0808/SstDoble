@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sstdoble.databinding.ActivityMainBinding;
+
+import android.util.Patterns;
+
 
 public class MainActivity extends AppCompatActivity {
     Button btnLogin,btnRegistrarse,btnOlvido;
@@ -44,8 +48,28 @@ public class MainActivity extends AppCompatActivity {
         binding.btnRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Registrarme.class));
+
+                String correo = etCorreo.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+
+                if (correo.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Debe completar ambos campos", Toast.LENGTH_SHORT).show();
+
+                if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+                        Toast.makeText(MainActivity.this, "Correo no válido", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+
+                    Intent intent = new Intent(MainActivity.this, Registrarme.class);
+                    intent.putExtra("correo", correo); // Si quieres pasar el correo
+                    startActivity(intent);
+                }
+
             }
         });
+
+
+
     }
 }
