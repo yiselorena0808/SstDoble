@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Piel"
     android:orientation="vertical"
     tools:context=".CreaActividades">
+
+    <!-- Barra superior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -15,11 +15,10 @@
         android:background="@color/black">
 
         <ImageView
-            android:id="@+id/iv_logo"
             android:layout_width="40dp"
             android:layout_height="50dp"
-            android:src="@drawable/list"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginStart="10dp"
+            android:src="@drawable/list" />
 
         <View
             android:layout_width="0dp"
@@ -27,24 +26,22 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:id="@+id/img_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/img" />
-
     </LinearLayout>
 
+    <!-- Título -->
     <TextView
-        android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="30dp"
         android:paddingBottom="16dp"
         android:text="@string/actividades_l_dicas"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:layout_marginTop="30dp"
         android:textStyle="bold" />
 
     <ScrollView
@@ -55,24 +52,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/Piel"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/Piel">
 
-
+            <!-- Card de campos -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="355dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:elevation="4dp"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
 
                 <EditText
                     android:id="@+id/etUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:autofillHints="username"
                     android:hint="@string/usuario"
                     android:inputType="textPersonName"
                     android:minHeight="48dp" />
@@ -82,7 +79,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:autofillHints="name"
                     android:hint="@string/nombre_de_la_actividad"
                     android:inputType="textCapWords"
                     android:minHeight="48dp" />
@@ -92,7 +88,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:autofillHints="date"
                     android:hint="@string/fecha_de_la_actividad"
                     android:inputType="date"
                     android:minHeight="48dp" />
@@ -106,38 +101,61 @@
                     android:inputType="textMultiLine"
                     android:minHeight="48dp"
                     android:minLines="3" />
-
             </LinearLayout>
 
-
-            <Button
-                android:id="@+id/btnSubirImagen"
+            <!-- Zona tipo "adjuntar archivo" -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="48dp"
-                android:backgroundTint="@color/Verde"
-                android:text="@string/subir_imagen" />
+                android:text="Adjuntar Evidencia"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
 
-            <Button
-                android:id="@+id/btnSubirVideo"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/Verde"
-                android:minHeight="48dp"
-                android:text="@string/subir_video" />
+                android:layout_height="116dp"
+                android:layout_marginBottom="24dp"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/img_10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Suelta los archivos para adjuntarlos aqui" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/img_11" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Botón enviar -->
             <Button
                 android:id="@+id/btnEnviarEvidencia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/Verde"
                 android:minHeight="48dp"
                 android:text="@string/enviar_evidencia" />
-
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

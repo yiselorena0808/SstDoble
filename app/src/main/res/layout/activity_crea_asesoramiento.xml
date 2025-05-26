@@ -114,11 +114,11 @@
                 <EditText
                     android:id="@+id/edtDescripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minLines="4"
+                    android:layout_height="54dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="top|start"
                     android:inputType="textMultiLine"
-                    android:layout_marginBottom="10dp" />
+                    android:minLines="4" />
             </LinearLayout>
 
             <Button
