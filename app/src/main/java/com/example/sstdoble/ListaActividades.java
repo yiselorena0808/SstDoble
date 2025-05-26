@@ -39,11 +39,11 @@ public class ListaActividades extends AppCompatActivity {
         RecyclerView recyclerView = binding.recyclerViewListaActividades;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<ListaChequeoItem> lista = new ArrayList<>();
-        lista.add(new ListaChequeoItem("Juan Pérez", "2025-05-19"));
-        lista.add(new ListaChequeoItem("Ana Torres", "2025-05-18"));
+        List<ListaActividadesItem> lista = new ArrayList<>();
+        lista.add(new ListaActividadesItem("Juan Pérez", "2025-05-19"));
+        lista.add(new ListaActividadesItem("Ana Torres", "2025-05-18"));
 
-        ListaChequeoAdapter adapter = new ListaChequeoAdapter(this, lista);
+        ListaActividadesAdapter adapter = new ListaActividadesAdapter(this, lista);
         recyclerView.setAdapter(adapter);
 
         // Botón para crear nueva lista de chequeo

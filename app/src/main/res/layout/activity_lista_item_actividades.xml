@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="12dp"
+    android:background="#FFFFFF"
+    android:elevation="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewListaActividades"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp" />
+    <TextView
+        android:id="@+id/txtNombreFecha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:text="Nombre de usuario - Fecha"
+        android:textColor="#000000"
+        android:textSize="14sp" />
 
+    <Button
+        android:id="@+id/btnDetalles"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/Verde"
+        android:text="Detalles"
+        android:textColor="@color/white" />
+
+    <ImageButton
+        android:id="@+id/btnDownloadl"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/white"
+        android:padding="6dp"
+        android:scaleType="center"
+        android:src="@android:drawable/stat_sys_download_done"
+        android:backgroundTint="#F44336" />
 </LinearLayout>
