@@ -35,22 +35,22 @@ public class MainActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String correo = etCorreo.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
+                String correo = binding.etCorreo.getText().toString().trim();
+                String password = binding.etPassword.getText().toString().trim();
 
                 if (correo.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Debe completar ambos campos", Toast.LENGTH_SHORT).show();
-
+                }
                     if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
                         Toast.makeText(MainActivity.this, "Correo no válido", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
 
-                    Intent intent = new Intent(MainActivity.this, Registrarme.class);
+                    Intent intent = new Intent(MainActivity.this, Menu.class);
                     intent.putExtra("correo", correo);
                     startActivity(intent);
-                }
+
 
             }
         });
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this,Menu.class));
+                startActivity(new Intent(MainActivity.this,Registrarme.class));
             }
         });
 

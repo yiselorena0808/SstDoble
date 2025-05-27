@@ -34,6 +34,12 @@ public class Blog extends AppCompatActivity {
         setContentView(R.layout.activity_blog);
 
         binding = ActivityBlogBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Ahora sí puedes acceder a la vista
+        binding.recyclerPublicaciones1.setLayoutManager(new LinearLayoutManager(this));
+
+        binding = ActivityBlogBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -44,14 +50,14 @@ public class Blog extends AppCompatActivity {
             }
         });
 
-            setContentView(R.layout.activity_blog);
+
 
             recyclerView = findViewById(R.id.recyclerPublicaciones1);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             publicaciones = new ArrayList<>();
 
-            // Puedes recibir datos por intent desde CrearBlog
+
             Intent intent = getIntent();
             String titulo = intent.getStringExtra("titulo");
             String descripcion = intent.getStringExtra("descripcion");

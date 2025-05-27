@@ -94,80 +94,11 @@
             app:cardCornerRadius="8dp"
             app:strokeWidth="1dp"
             app:strokeColor="@color/white"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Título de la publicación 1"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="8dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/cuadrado"
-                    android:src="@drawable/img_7"
-                    android:contentDescription="Imagen de la publicación" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Esta es una breve descripción de la publicación número uno. Puede ser un resumen o introducción."
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <!-- Reacciones -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="♡ 12"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="💬 3"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🔁"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/txtcomen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:text="Comentarios"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:backgroundTint="@color/Verde"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-        </androidx.recyclerview.widget.RecyclerView>
 
         <!-- Publicación 2 -->
         <androidx.recyclerview.widget.RecyclerView
@@ -179,80 +110,10 @@
             app:cardCornerRadius="8dp"
             app:strokeWidth="1dp"
             app:strokeColor="@color/white"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="@color/white"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Título de la publicación 2"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="8dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/cuadrado"
-                    android:src="@drawable/img_7"
-                    android:contentDescription="Imagen de la publicación" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Descripción breve de la segunda publicación. Puede incluir contenido de interés para el lector."
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="14sp" />
-
-                <!-- Reacciones -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="♡ 8"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:text="💬 1"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🔁"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/txtcomen1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="8dp"
-                    android:text="Comentarios"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    app:backgroundTint="@color/Verde"
-                    app:cornerRadius="8dp" />
-            </LinearLayout>
-        </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
     </ScrollView>
 
