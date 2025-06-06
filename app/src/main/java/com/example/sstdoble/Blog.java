@@ -23,6 +23,8 @@ public class Blog extends AppCompatActivity {
 
     ActivityBlogBinding binding;
 
+
+
     private RecyclerView recyclerView;
     private PubliAdapter adapter;
     private List<PubliBlog> publicaciones;
