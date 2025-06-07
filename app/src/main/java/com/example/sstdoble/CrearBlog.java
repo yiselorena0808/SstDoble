@@ -22,6 +22,37 @@ public class CrearBlog extends AppCompatActivity {
     private ActivityResultLauncher<Intent> pickImageLauncher;
     ActivityCrearBlogBinding binding;
 
+    private String titulo;
+
+    private String urlImg;
+
+    private String desc;
+
+    public CrearBlog (String titulo, String urlImg, String desc){
+        this.desc = desc;
+        this.titulo = titulo;
+        this.urlImg = urlImg;
+    }
+
+    public String getTitulo(){return titulo;}
+
+    public void setTitulo(String titulo){this.titulo = titulo;}
+    public String getUrlImg(){return urlImg;}
+
+    public void setUrlImg(String urlImg){this.urlImg = urlImg;}
+    public String getDesc(){return desc;}
+    public void setDesc(String desc){this.desc = desc;}
+
+
+    @Override
+    public String toString(){
+        return "CrearBlog{" +
+                "titulo=" + titulo +
+                ", desc=" + desc +
+                ", urlImg" + urlImg + '\'' +
+                '}';
+    }
+
     private Uri imagenUri = null;
     private Intent data;
 
