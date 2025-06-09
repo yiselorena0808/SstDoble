@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -14,47 +15,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.sstdoble.controlador.CrearBlogs;
+import com.example.sstdoble.controlador.InterfazBlog;
+import com.example.sstdoble.controlador.ManagerDb;
 import com.example.sstdoble.databinding.ActivityCrearBlogBinding;
 
 
 public class CrearBlog extends AppCompatActivity {
 
-    private ActivityResultLauncher<Intent> pickImageLauncher;
     ActivityCrearBlogBinding binding;
-
-    private String titulo;
-
-    private String urlImg;
-
-    private String desc;
-
-    public CrearBlog (String titulo, String urlImg, String desc){
-        this.desc = desc;
-        this.titulo = titulo;
-        this.urlImg = urlImg;
-    }
-
-    public String getTitulo(){return titulo;}
-
-    public void setTitulo(String titulo){this.titulo = titulo;}
-    public String getUrlImg(){return urlImg;}
-
-    public void setUrlImg(String urlImg){this.urlImg = urlImg;}
-    public String getDesc(){return desc;}
-    public void setDesc(String desc){this.desc = desc;}
-
-
-    @Override
-    public String toString(){
-        return "CrearBlog{" +
-                "titulo=" + titulo +
-                ", desc=" + desc +
-                ", urlImg" + urlImg + '\'' +
-                '}';
-    }
+    private ActivityResultLauncher<Intent> pickImageLauncher;
 
     private Uri imagenUri = null;
     private Intent data;
+
+    ManagerDb managerDb;
 
 
     @Override
@@ -75,14 +50,36 @@ public class CrearBlog extends AppCompatActivity {
         });
 
         binding.btnPubli.setOnClickListener(v -> {
+
             String titulo = binding.txttitu.getText().toString();
             String descripcion = binding.txtdesc.getText().toString();
+
 
             Intent intent = new Intent(CrearBlog.this, Blog.class);
             intent.putExtra("titulo", titulo);
             intent.putExtra("descripcion", descripcion);
-            intent.putExtra("imagenUri", imagenUri.toString());
+            intent.putExtra("imagenUri", "imagenUri.toString()");
             startActivity(intent);
+            int id = 1;
+
+
+
+
+
+            managerDb = new ManagerDb(CrearBlog.this);
+
+
+            CrearBlogs blog = new CrearBlogs(id,titulo,descripcion,"imagenUri.toString()");
+            long resul = managerDb.insertarBlog(blog);
+
+            if(resul > 0){
+                Toast.makeText(CrearBlog.this, "DATOS INGRESADOS CORRECTAMENTE" + resul, Toast.LENGTH_SHORT).show();
+                binding.txttitu.setText(" ");
+                binding.txtdesc.setText(" ");
+                binding.btnAgregarImagen.setText(" ");
+            } else {
+                Toast.makeText(CrearBlog.this, "DATOS NO INGRESADOS" + resul, Toast.LENGTH_SHORT).show();
+            }
         });
 
         binding.btnAgregarImagen.setOnClickListener(v -> {

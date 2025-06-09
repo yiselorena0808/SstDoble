@@ -33,7 +33,7 @@ public class Blog extends AppCompatActivity {
         binding = ActivityBlogBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Ahora sí puedes acceder a la vista
+
         binding.recyclerPublicaciones1.setLayoutManager(new LinearLayoutManager(this));
 
         binding = ActivityBlogBinding.inflate(getLayoutInflater());

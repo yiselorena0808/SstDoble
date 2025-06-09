@@ -18,7 +18,7 @@ public class InterfazBlog extends AppCompatActivity {
 
     Button btnAgregarImagen, btnGuardar;
 
-    ManagerDb managerDb;
+
 
 
     @Override
@@ -35,26 +35,7 @@ public class InterfazBlog extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titulo = txttitu.getText().toString();
-                String descrip = txtdesc.getText().toString();
-                String urlimg = btnAgregarImagen.toString();
 
-
-
-                managerDb = new ManagerDb(InterfazBlog.this);
-
-
-                CrearBlog blog = new CrearBlog(titulo,descrip,urlimg);
-                long resul = managerDb.insertarBlog(blog);
-
-                if(resul > 0){
-                    Toast.makeText(InterfazBlog.this, "DATOS INGRESADOS CORRECTAMENTE" + resul, Toast.LENGTH_SHORT).show();
-                    txttitu.setText(" ");
-                    txtdesc.setText(" ");
-                    btnAgregarImagen.setText(" ");
-                } else {
-                    Toast.makeText(InterfazBlog.this, "DATOS NO INGRESADOS" + resul, Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }

@@ -19,14 +19,15 @@ public class ManagerDb {
     public void openDNWRITE() {db = bdHelper.getWritableDatabase();}
     public void openDbRd(){db= bdHelper.getReadableDatabase();}
 
-    public long insertarBlog(CrearBlog blog){
+    public long insertarBlog(CrearBlogs blog){
         openDNWRITE();
 
         ContentValues values = new ContentValues();
 
+        values.put("id", 1);
         values.put("titulo",blog.getTitulo());
         values.put("descripcion",blog.getDesc());
-        values.put("imagen",blog.getUrlImg());
+        values.put("urlImagen",blog.getUrlImg());
 
         long resul = db.insert("Blog", null,values);
         return resul;
