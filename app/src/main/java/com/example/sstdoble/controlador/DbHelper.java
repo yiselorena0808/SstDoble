@@ -21,6 +21,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Constantes.BLOG);
         sqLiteDatabase.execSQL(Constantes.LISTA_CHEQUEO);
+        sqLiteDatabase.execSQL(Constantes.ACTIVIDADES_LUDICAS);
 
         String query = "CREATE TABLE " + Constantes.gestiones_epp + " (" +
                 Constantes.C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -40,6 +41,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS blog");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.gestiones_epp);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS lista_chequeo");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ActividadesLudicas");
 
         onCreate(sqLiteDatabase);
     }

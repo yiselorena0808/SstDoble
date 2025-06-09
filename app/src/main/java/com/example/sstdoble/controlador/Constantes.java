@@ -4,7 +4,7 @@ public class Constantes {
 
 
     public static final String NOMBRE_BD = "SSTDB";
-    public static final int VERSION_BD = 3;
+    public static final int VERSION_BD = 4;
 
     public static String BLOG = "Create table Blog (id integer primary key autoincrement, titulo text, urlImagen text, descripcion text)";
 
@@ -29,5 +29,6 @@ public class Constantes {
             "soat TEXT, " +
             "tecnico TEXT, " +
             "kilometraje TEXT)";
+    public static String ACTIVIDADES_LUDICAS = "Create table ActividadesLudicas (id integer primary key autoincrement, nombreUsuario text, nombreActividad text, fechaActividad text, descripcion text, urlEvidencia text)";
 
 }
