@@ -39,7 +39,6 @@ private int id;
     @Override
     public String toString(){
         return "CrearBlog{" +
-                "id=" + id +
                 "titulo=" + titulo +
                 ", desc=" + desc +
                 ", urlImg" + urlImg + '\'' +

@@ -7,16 +7,11 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.sstdoble.controlador.CrearBlogs;
-import com.example.sstdoble.controlador.InterfazBlog;
 import com.example.sstdoble.controlador.ManagerDb;
 import com.example.sstdoble.databinding.ActivityCrearBlogBinding;
 
@@ -53,14 +48,16 @@ public class CrearBlog extends AppCompatActivity {
 
             String titulo = binding.txttitu.getText().toString();
             String descripcion = binding.txtdesc.getText().toString();
+            Uri imagenUri = data.getData();
+            String urlImagen = imagenUri.toString();
 
 
             Intent intent = new Intent(CrearBlog.this, Blog.class);
             intent.putExtra("titulo", titulo);
             intent.putExtra("descripcion", descripcion);
-            intent.putExtra("imagenUri", "imagenUri.toString()");
+            intent.putExtra("imagenUri", urlImagen);
             startActivity(intent);
-            int id = 1;
+            int id = 2;
 
 
 
@@ -69,7 +66,7 @@ public class CrearBlog extends AppCompatActivity {
             managerDb = new ManagerDb(CrearBlog.this);
 
 
-            CrearBlogs blog = new CrearBlogs(id,titulo,descripcion,"imagenUri.toString()");
+            CrearBlogs blog = new CrearBlogs(id,titulo,descripcion,urlImagen);
             long resul = managerDb.insertarBlog(blog);
 
             if(resul > 0){

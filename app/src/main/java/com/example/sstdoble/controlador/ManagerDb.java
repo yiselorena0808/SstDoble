@@ -24,7 +24,7 @@ public class ManagerDb {
 
         ContentValues values = new ContentValues();
 
-        values.put("id", 1);
+        values.put("id", 2);
         values.put("titulo",blog.getTitulo());
         values.put("descripcion",blog.getDesc());
         values.put("urlImagen",blog.getUrlImg());
