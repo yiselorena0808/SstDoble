@@ -20,6 +20,8 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Constantes.BLOG);
+        sqLiteDatabase.execSQL(Constantes.LISTA_CHEQUEO);
+
         String query = "CREATE TABLE " + Constantes.gestiones_epp + " (" +
                 Constantes.C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 Constantes.C_NOMBRE + " TEXT, " +
@@ -37,6 +39,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS blog");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.gestiones_epp);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS lista_chequeo");
+
         onCreate(sqLiteDatabase);
     }
 }

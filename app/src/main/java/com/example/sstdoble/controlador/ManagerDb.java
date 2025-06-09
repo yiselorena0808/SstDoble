@@ -48,5 +48,21 @@ public class ManagerDb {
         return db.insert(Constantes.gestiones_epp, null, values);
     }
 
+    public long insertarListaChequeo(CrearListaChequeo listaChequeo) {
+        openDNWRITE();
 
+        ContentValues values = new ContentValues();
+
+        values.put("usuario_nombre", listaChequeo.getUsuarioNombre());
+        values.put("fecha", listaChequeo.getFecha());
+        values.put("hora", listaChequeo.getHora());
+        values.put("modelo", listaChequeo.getModelo());
+        values.put("marca", listaChequeo.getMarca());
+        values.put("soat", listaChequeo.getSoat());
+        values.put("tecnico", listaChequeo.getTecnico());
+        values.put("kilometraje", listaChequeo.getKilometraje());
+
+        long resul = db.insert("lista_chequeo", null, values);
+        return resul;
+    }
 }
