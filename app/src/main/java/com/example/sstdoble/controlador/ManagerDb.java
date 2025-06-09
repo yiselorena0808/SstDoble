@@ -32,6 +32,21 @@ public class ManagerDb {
         long resul = db.insert("Blog", null,values);
         return resul;
     }
+    public long insertarSolicitud(String nombre, String apellido, String cedula, String cargo,
+                                  String producto, String cantidad, String importancia) {
+        SQLiteDatabase db = bdHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Constantes.C_NOMBRE, nombre);
+        values.put(Constantes.C_APELLIDO, apellido);
+        values.put(Constantes.C_CEDULA, cedula);
+        values.put(Constantes.C_CARGO, cargo);
+        values.put(Constantes.C_PRODUCTO, producto);
+        values.put(Constantes.C_CANTIDAD, cantidad);
+        values.put(Constantes.C_IMPORTANCIA, importancia);
+
+        return db.insert(Constantes.gestiones_epp, null, values);
+    }
 
 
 }

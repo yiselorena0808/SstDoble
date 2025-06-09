@@ -1,17 +1,14 @@
 package com.example.sstdoble;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.sstdoble.controlador.ManagerDb;
 import com.example.sstdoble.databinding.ActivityFormGestionBinding;
-import com.example.sstdoble.databinding.ActivityMenuBinding;
 
 public class FormGestion extends AppCompatActivity {
 
@@ -21,18 +18,36 @@ public class FormGestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_form_gestion);
 
         binding = ActivityFormGestionBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.btnEnviarSolicitud.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(FormGestion.this, ListaGestion.class));
+        binding.btnEnviarSolicitud.setOnClickListener(v -> {
+            String nombre = binding.etNombre.getText().toString();
+            String apellido = binding.etApellido.getText().toString();
+            String cedula = binding.etCedula.getText().toString();
+            String cargo = binding.etCargo11.getText().toString();
+            String producto = binding.etLugar.getText().toString();
+            String cantidad = binding.etFecha.getText().toString();
+
+            String importancia = "";
+            int selectedId = binding.getRoot().findViewById(binding.getRoot().getId()).findViewById(R.id.radioGroup).getId();
+            RadioButton radioButton = findViewById(binding.radioGroup.getCheckedRadioButtonId());
+
+            if (radioButton != null) {
+                importancia = radioButton.getText().toString();
+            }
+
+            // Guardar en base de datos
+            ManagerDb managerDB = new ManagerDb(this);
+            long resultado = managerDB.insertarSolicitud(nombre, apellido, cedula, cargo, producto, cantidad, importancia);
+
+            if (resultado != -1) {
+                Toast.makeText(this, "Solicitud guardada", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
