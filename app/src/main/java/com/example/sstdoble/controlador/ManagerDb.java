@@ -54,5 +54,18 @@ public class ManagerDb {
         long resul = db.insert("Reporte", null, values);
         return resul;
     }
+    public long insertarActividad(CrearActividades actividad) {
+        openDNWRITE();
+
+        ContentValues values = new ContentValues();
+        values.put("usuario", actividad.getNombreUsuario());
+        values.put("nombre_actividad", actividad.getNombreActividad());
+        values.put("fecha", actividad.getFechaActividad());
+        values.put("descripcion", actividad.getDescripcion());
+        values.put("imagen_uri", actividad.getUrlEvidencia());
+
+        return db.insert("Actividades", null, values);
+    }
+
 }
 

@@ -19,26 +19,18 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Constantes.BLOG);
-        sqLiteDatabase.execSQL(Constantes.LISTA_CHEQUEO);
+        sqLiteDatabase.execSQL(Constantes.ACTIVIDADES_LUDICAS);
 
-        String query = "CREATE TABLE " + Constantes.gestiones_epp + " (" +
-                Constantes.C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                Constantes.C_NOMBRE + " TEXT, " +
-                Constantes.C_APELLIDO + " TEXT, " +
-                Constantes.C_CEDULA + " TEXT, " +
-                Constantes.C_CARGO + " TEXT, " +
-                Constantes.C_PRODUCTO + " TEXT, " +
-                Constantes.C_CANTIDAD + " TEXT, " +
-                Constantes.C_IMPORTANCIA + " TEXT)";
-        sqLiteDatabase.execSQL(query);
+
+
 
 }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS blog");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.gestiones_epp);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS lista_chequeo");
+        sqLiteDatabase.execSQL(Constantes.ACTIVIDADES_LUDICAS);
 
         onCreate(sqLiteDatabase);
     }
