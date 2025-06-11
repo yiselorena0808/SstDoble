@@ -13,7 +13,6 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(@Nullable Context context){
         super(context, Constantes.NOMBRE_BD, null, Constantes.VERSION_BD);
 
-
     }
 
 
