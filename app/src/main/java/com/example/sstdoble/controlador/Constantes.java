@@ -11,6 +11,8 @@ public class Constantes {
 
     public static String ACTIVIDADES_LUDICAS = "Create table ActividadesLudicas (id integer primary key autoincrement, nombreUsuario text, nombreActividad text, fechaActividad text, descripcion text, urlEvidencia text)";
 
+    public static String SOLICITUDES = "Create table Solicitudes (id integer primary key autoincrement, nombre text, apellido text, cedula integer, cargo text, producto text, cantidad integer ";
+
 
 
 }

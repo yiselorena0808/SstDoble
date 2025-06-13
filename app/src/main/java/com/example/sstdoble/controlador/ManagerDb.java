@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.sstdoble.CrearBlog;
+import com.example.sstdoble.FormGestion;
 
 public class ManagerDb {
 
@@ -66,6 +67,23 @@ public class ManagerDb {
 
         return db.insert("Actividades", null, values);
     }
+
+    public long insertarSolicitud(CrearGestion gestion){
+        openDNWRITE();
+
+        ContentValues values = new ContentValues();
+        values.put("nombre", gestion.getNombre());
+        values.put("apellido", gestion.getApellido());
+        values.put("cedula", gestion.getCedula());
+        values.put("cargo", gestion.getCargo());
+        values.put("producto", gestion.getProducto());
+        values.put("cantidad", gestion.getCantidad());
+        values.put("importancia", gestion.getImportancia());
+
+        long resul = db.insert("Solicitudes", null, values);
+        return resul;
+    }
+
 
 }
 

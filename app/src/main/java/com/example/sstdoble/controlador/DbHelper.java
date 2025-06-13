@@ -20,7 +20,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(Constantes.BLOG);
         sqLiteDatabase.execSQL(Constantes.ACTIVIDADES_LUDICAS);
-
+        sqLiteDatabase.execSQL(Constantes.SOLICITUDES);
 
 
 
@@ -30,7 +30,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS blog");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS lista_chequeo");
-        sqLiteDatabase.execSQL(Constantes.ACTIVIDADES_LUDICAS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS actividad_ludicas");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS solicitud");
 
         onCreate(sqLiteDatabase);
     }
