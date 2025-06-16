@@ -13,9 +13,9 @@ public class CrearGestion {
     public CrearGestion(String nombre, String apellido, String cedula, String cargo, String producto, String cantidad, String importancia){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.cedula = cedula;
+        this.cedula = Integer.parseInt(cedula);
         this.producto = producto;
-        this.cantidad = cantidad;
+        this.cantidad = Integer.parseInt(cantidad);
         this.importancia = importancia;
         this.cargo = cargo;
     }
