@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ListaChequeo">
+    tools:context=".controller.ListaChequeo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,10 +98,10 @@
                 </ImageButton>
             </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewListaChequeo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewListaChequeo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </LinearLayout>

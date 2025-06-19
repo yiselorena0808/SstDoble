@@ -15,52 +15,58 @@
         android:theme="@style/Theme.SstDoble"
         tools:targetApi="31">
         <activity
-            android:name=".Olvidaste_contrasenia"
+            android:name=".controller.Detalles_reportes"
             android:exported="false" />
         <activity
-            android:name=".Registrarme"
+            android:name=".controller.Detalles_chequeo"
+            android:exported="false" />
+        <activity
+            android:name=".controller.Olvidaste_contrasenia"
+            android:exported="false" />
+        <activity
+            android:name=".controller.Registrarme"
             android:exported="false" />
         <activity
             android:name=".CreaReporte"
             android:exported="false" />
         <activity
-            android:name=".ListaReportes"
+            android:name=".controller.ListaReportes"
             android:exported="false" />
         <activity
-            android:name=".CreaAsesoramiento"
+            android:name=".controller.CreaAsesoramiento"
             android:exported="false" />
         <activity
-            android:name=".ListaAsesoramiento"
+            android:name=".controller.ListaAsesoramiento"
             android:exported="false" />
         <activity
-            android:name=".CreaActividades"
+            android:name=".controller.CreaActividades"
             android:exported="false" />
         <activity
-            android:name=".ListaActividades"
+            android:name=".controller.ListaActividades"
             android:exported="false" />
         <activity
-            android:name=".FormChequeo"
+            android:name=".controller.FormChequeo"
             android:exported="false" />
         <activity
-            android:name=".ListaChequeo"
+            android:name=".controller.ListaChequeo"
             android:exported="false" />
         <activity
-            android:name=".Blog"
+            android:name=".controller.Blog"
             android:exported="false" />
         <activity
-            android:name=".CrearBlog"
+            android:name=".controller.CrearBlog"
             android:exported="false" />
         <activity
-            android:name=".FormGestion"
+            android:name=".controller.FormGestion"
             android:exported="false" />
         <activity
-            android:name=".ListaGestion"
+            android:name=".controller.ListaGestion"
             android:exported="false" />
         <activity
-            android:name=".Menu"
+            android:name=".controller.Menu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

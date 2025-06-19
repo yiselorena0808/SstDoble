@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/Piel"
     android:orientation="vertical"
-    tools:context=".CreaActividades">
+    tools:context=".controller.CreaActividades">
 
     <!-- Barra superior -->
     <LinearLayout
