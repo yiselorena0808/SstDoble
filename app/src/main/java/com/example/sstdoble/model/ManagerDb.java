@@ -5,11 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
+import com.example.sstdoble.controller.CrearGestion;
 import com.example.sstdoble.controller.CrearListaChequeo;
+import com.example.sstdoble.controller.CrearListaReportes;
 import com.example.sstdoble.controller.ListaActividadesItem;
 import com.example.sstdoble.controller.ListaChequeoItem;
 import com.example.sstdoble.controller.ListaReporterItem;
+import com.example.sstdoble.controller.PubliBlog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +39,16 @@ public class ManagerDb {
         }
     }
 
-    // PARA TABLA LISTA_CHEQUEO
+    // Cerrar la base de datos
+    public void cerrarDB() {
+        if (db != null && db.isOpen()) {
+            db.close();
+        }
+    }
 
+    // ============ LISTA DE CHEQUEO ============
     public long insertarListaChequeo(CrearListaChequeo lista) {
         openDbWrite();
-
         ContentValues values = new ContentValues();
         values.put("usuarioNombre", lista.getUsuarioNombre());
         values.put("fecha", lista.getFecha());
@@ -82,11 +89,9 @@ public class ManagerDb {
         return lista;
     }
 
-    // MÉTODOS PARA TABLA REPORTES
-
-    public long insertarReporte(com.example.sstdoble.controller.CrearListaReportes reporte) {
+    // ============ REPORTES ============
+    public long insertarReporte(CrearListaReportes reporte) {
         openDbWrite();
-
         ContentValues values = new ContentValues();
         values.put("nombre_usuario", reporte.getNombreUsuario());
         values.put("cargo", reporte.getCargo());
@@ -130,21 +135,9 @@ public class ManagerDb {
         return lista;
     }
 
-    // Método para cerrar la base de datos
-    public void cerrarDB() {
-        if (db != null && db.isOpen()) {
-            db.close();
-        }
-    }
-
-
-    // METODOS PARA TABLA ACTIVIDADES
-
-    // MÉTODOS PARA TABLA ACTIVIDADES
-
+    // ============ ACTIVIDADES ============
     public long insertarActividad(ListaActividadesItem actividad) {
         openDbWrite();
-
         ContentValues values = new ContentValues();
         values.put("usuario", actividad.getNombreActividad());
         values.put("nombre_actividad", actividad.getLugar());
@@ -178,6 +171,56 @@ public class ManagerDb {
         cursor.close();
         cerrarDB();
         return lista;
+    }
+
+    // ============ BLOG ============
+    public long insertarPubli(PubliBlog publi) {
+        openDbWrite();
+        ContentValues values = new ContentValues();
+        values.put("titulo", publi.getTitulo());
+        values.put("descripcion", publi.getDescripcion());
+        values.put("imagenUri", publi.getImagenUri());
+
+        long resultado = db.insert(Constantes.TABLA_BLOG, null, values);
+        cerrarDB();
+        return resultado;
+    }
+
+    public List<PubliBlog> obtenerSolicitudes(CrearGestion gestion) {
+        List<PubliBlog> lista = new ArrayList<>();
+        openDbRead();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constantes.TABLA_BLOG, null);
+        if (cursor.moveToFirst()) {
+            do {
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+                String titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"));
+                String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
+                String imagenUri = cursor.getString(cursor.getColumnIndexOrThrow("imagenUri"));
+
+                lista.add(new PubliBlog(id, titulo, descripcion, imagenUri));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        cerrarDB();
+        return lista;
+    }
+    public long insertarGestion(CrearGestion gestion) {
+        openDbWrite();
+
+        ContentValues values = new ContentValues();
+        values.put("nombre", gestion.getNombre());
+        values.put("apellido", gestion.getApellido());
+        values.put("cedula", gestion.getCedula());
+        values.put("cargo", gestion.getCargo());
+        values.put("producto", gestion.getProducto());
+        values.put("cantidad", gestion.getCantidad());
+        values.put("importancia", gestion.getImportancia());
+
+        long resultado = db.insert(Constantes.TABLA_SOLICITUDES, null, values);
+        cerrarDB();
+        return resultado;
     }
 
 }

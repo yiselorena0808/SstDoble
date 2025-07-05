@@ -99,36 +99,6 @@
                 android:paddingEnd="12dp"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Botones Adjuntar y Subir Archivo -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/Verde"
-                    android:text="Adjuntar"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/cuadrado"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="2"
-                    android:text="Adjunta un archivo"
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:layout_marginStart="10dp"/>
-            </LinearLayout>
-
             <!-- Botón Publicar -->
             <Button
                 android:id="@+id/btnPubli"
@@ -141,19 +111,30 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/cuadrado"/>
+
         </LinearLayout>
 
-        <!-- Botón Regresar -->
+        <!-- RecyclerView para mostrar las publicaciones -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPublicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"/>
+
         <Button
             android:id="@+id/btnRegreso"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:backgroundTint="@color/back"
-            android:text="Regresar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/cuadrado"
+            android:backgroundTint="@color/Verde"
+            android:text="Regreso"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/cuadrado"/>
+            android:textSize="16sp" />
+
     </LinearLayout>
 
 </LinearLayout>

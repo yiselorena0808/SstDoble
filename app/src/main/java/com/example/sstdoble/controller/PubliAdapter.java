@@ -1,60 +1,61 @@
 package com.example.sstdoble.controller;
-import android.net.Uri;
+
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
 import com.example.sstdoble.R;
-
+import com.example.sstdoble.model.Constantes;
 import java.util.List;
 
+public class PubliAdapter extends RecyclerView.Adapter<PubliAdapter.PubliViewHolder> {
 
-public class PubliAdapter extends RecyclerView.Adapter<PubliAdapter.ViewHolder> {
-    private List<PubliBlog> lista;
+    private List<PubliBlog> publicaciones;
 
-    public PubliAdapter(List<PubliBlog> lista) {
-        this.lista = lista;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitulo, tvDescripcion;
-        ImageView imgPublicacion;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            tvTitulo = itemView.findViewById(R.id.tvTitulo);
-            tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
-            imgPublicacion = itemView.findViewById(R.id.imgPublicacion);
-        }
+    public PubliAdapter(List<PubliBlog> publicaciones) {
+        this.publicaciones = publicaciones;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_publi, parent, false);
-        return new ViewHolder(v);
+    public PubliViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_publi, parent, false);
+        return new PubliViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        PubliBlog pub = lista.get(position);
-        holder.tvTitulo.setText(pub.getTitulo());
-        holder.tvDescripcion.setText(pub.getDescripcion());
-            Uri uri = Uri.parse(pub.getImagenUri());
-            holder.imgPublicacion.setImageURI(uri);
+    public void onBindViewHolder(@NonNull PubliViewHolder holder, int position) {
+        PubliBlog publi = publicaciones.get(position);
+        holder.tituloTextView.setText(publi.getTitulo());
+        holder.descripcionTextView.setText(publi.getDescripcion());
 
+        // Cargar la imagen si la URI no es nula
+        if (publi.getImagenUri() != null) {
+            // Usar Glide o Picasso para cargar la imagen (comentado para que lo implementes)
+            // Glide.with(holder.itemView.getContext()).load(publi.getImagenUri()).into(holder.imagenView);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return lista.size();
+        return publicaciones.size();
+    }
+
+    static class PubliViewHolder extends RecyclerView.ViewHolder {
+        TextView tituloTextView;
+        TextView descripcionTextView;
+        ImageView imagenView;
+
+        @SuppressLint("WrongViewCast")
+        public PubliViewHolder(View itemView) {
+            super(itemView);
+            tituloTextView = itemView.findViewById(R.id.tvTitulo);
+            descripcionTextView = itemView.findViewById(R.id.tvDescripcion);
+            imagenView = itemView.findViewById(R.id.btnAgregarImagen);
+        }
     }
 }
-
