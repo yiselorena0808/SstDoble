@@ -10,7 +10,10 @@ public class Constantes {
     public static final String TABLA_LISTA_CHEQUEO = "lista_chequeo";
     public static final String TABLA_REPORTES = "reportes";
     public static final String TABLA_ACTIVIDADES = "actividades";
+
     public static final String TABLA_SOLICITUDES = "solicitudes";
+
+    public  static  final  String TABLA_BLOG = "blog";
 
     // Crear tabla lista_chequeo
     public static final String CREAR_TABLA_LISTA_CHEQUEO = "CREATE TABLE " + TABLA_LISTA_CHEQUEO + " (" +
@@ -61,7 +64,6 @@ public class Constantes {
             "importancia TEXT" +
             ")";
     //Crear tabla blog
-    public static final String TABLA_BLOG = "blog";
 
     public static final String CREAR_TABLA_BLOG = "CREATE TABLE " + TABLA_BLOG + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
