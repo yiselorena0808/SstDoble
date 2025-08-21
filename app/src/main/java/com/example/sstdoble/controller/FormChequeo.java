@@ -8,9 +8,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sstdoble.api.ApiClient;
+import com.example.sstdoble.api.ApiResponse;
+import com.example.sstdoble.api.ApiService;
 import com.example.sstdoble.databinding.ActivityFormChequeoBinding;
-import com.example.sstdoble.model.ManagerDb;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FormChequeo extends AppCompatActivity {
 
@@ -28,15 +33,12 @@ public class FormChequeo extends AppCompatActivity {
         binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (guardarDatos()) {
-                    // Si los datos son válidos, ir a la siguiente pantalla
-                    startActivity(new Intent(FormChequeo.this, ListaChequeo.class));
-                }
+                guardarDatos();
             }
         });
     }
 
-    private boolean guardarDatos() {
+    private void guardarDatos() {
         String nombreUsuario = binding.etUsuarioNombre.getText().toString().trim();
         String fecha = binding.etFecha.getText().toString().trim();
         String hora = binding.etHora.getText().toString().trim();
@@ -51,11 +53,13 @@ public class FormChequeo extends AppCompatActivity {
                 modelo.isEmpty() || marca.isEmpty() || kilometraje.isEmpty() ||
                 soat == null || tecnico == null) {
             Toast.makeText(this, "Por favor completa todos los campos.", Toast.LENGTH_LONG).show();
-            return false;
+            return;
         }
 
-        // Crear el objeto
+        // Crear objeto con los mismos campos que espera el backend
+        // Crear objeto con los mismos campos que espera el backend
         CrearListaChequeo nuevaLista = new CrearListaChequeo();
+        nuevaLista.setIdUsuario(14); // ejemplo, hasta que uses el login real
         nuevaLista.setUsuarioNombre(nombreUsuario);
         nuevaLista.setFecha(fecha);
         nuevaLista.setHora(hora);
@@ -65,23 +69,35 @@ public class FormChequeo extends AppCompatActivity {
         nuevaLista.setSoat(soat);
         nuevaLista.setTecnico(tecnico);
 
-        // Guardar en la base de datos
-        ManagerDb managerDb = new ManagerDb(this);
-        long resultado = managerDb.insertarListaChequeo(nuevaLista);
+        String token = "TOKEN_JWT_VALIDO";
 
-        if (resultado > 0) {
-            Toast.makeText(this, "Guardado exitosamente", Toast.LENGTH_SHORT).show();
-            return true;
-        } else {
-            Toast.makeText(this, "Error al guardar", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        ApiService apiService = ApiClient.getClient(token).create(ApiService.class);
+
+        // Ahora pedimos una respuesta JSON, no Void
+        Call<ApiResponse> call = apiService.crearListaChequeo(nuevaLista);
+
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(FormChequeo.this, "Guardado en API exitosamente", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(FormChequeo.this, ListaChequeo.class));
+                } else {
+                    Toast.makeText(FormChequeo.this, "Error en API: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Toast.makeText(FormChequeo.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-
     private String getRadioValue(RadioButton rbSi, RadioButton rbNo) {
-        if (rbSi.isChecked()) return "Sí";
+        if (rbSi.isChecked()) return "Si";  // <- sin tilde
         else if (rbNo.isChecked()) return "No";
         else return null;
     }
+
 }

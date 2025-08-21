@@ -1,24 +1,41 @@
 package com.example.sstdoble.controller;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CrearListaChequeo {
 
-    private int id;
+    @SerializedName("id_usuario")
+    private int idUsuario;
+
+    @SerializedName("usuario_nombre")
     private String usuarioNombre;
+
+    @SerializedName("fecha")
     private String fecha;
+
+    @SerializedName("hora")
     private String hora;
+
+    @SerializedName("modelo")
     private String modelo;
+
+    @SerializedName("marca")
     private String marca;
+
+    @SerializedName("soat")
     private String soat;
+
+    @SerializedName("tecnico")
     private String tecnico;
+
+    @SerializedName("kilometraje")
     private String kilometraje;
 
-    public CrearListaChequeo() {
-    }
 
-    public CrearListaChequeo(int id, String usuarioNombre, String fecha, String hora,
+    public CrearListaChequeo(int idUsuario, String usuarioNombre, String fecha, String hora,
                              String modelo, String marca, String soat, String tecnico,
                              String kilometraje) {
-        this.id = id;
+        this.idUsuario = idUsuario;
         this.usuarioNombre = usuarioNombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -29,14 +46,17 @@ public class CrearListaChequeo {
         this.kilometraje = kilometraje;
     }
 
-    // Getters y Setters
+    public CrearListaChequeo() {
 
-    public int getId() {
-        return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    // 🔹 Getters y Setters
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getUsuarioNombre() {
@@ -106,7 +126,7 @@ public class CrearListaChequeo {
     @Override
     public String toString() {
         return "ListaChequeo{" +
-                "id=" + id +
+                "idUsuario=" + idUsuario +
                 ", usuarioNombre='" + usuarioNombre + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", hora='" + hora + '\'' +
