@@ -38,7 +38,7 @@ public class ListaActividades extends AppCompatActivity {
 
         // Obtener datos desde la base de datos usando ManagerDb
         ManagerDb managerDb = new ManagerDb(this);
-        List<ListaActividadesItem> lista = managerDb.obtenerListasActividades();
+        List<ListaActividadesItem> lista = managerDb.obtenerActividades();
 
         // Asignar el adapter con la lista desde SQLite
         ListaActividadesAdapter adapter = new ListaActividadesAdapter(this, lista);

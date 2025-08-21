@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sstdoble.R;
+import com.example.sstdoble.databinding.DetallesReportesBinding;
 
 import java.util.List;
 public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdapter.ViewHolder> {
@@ -39,7 +40,7 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
         holder.txtTituloReporte.setText(item.getNombre_usuario() + " - " + item.getFecha());
 
         holder.btnDetalles.setOnClickListener(v -> {
-            Intent intent = new Intent(context, Detalles_reporte.class);
+            Intent intent = new Intent(context, DetallesReportesBinding.class);
             intent.putExtra("id", item.getId());
             intent.putExtra("nombre_usuario", item.getNombre_usuario());
             intent.putExtra("cargo", item.getCargo());

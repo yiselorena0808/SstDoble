@@ -36,7 +36,7 @@ public class Blog extends AppCompatActivity {
     }
 
     private void loadPublis() {
-        List<com.example.sstdoble.controller.PubliBlog> list = new ManagerDb(this).obtenerSolicitudes(gestion);
+        List<PubliBlog> list = new ManagerDb(this).obtenerSolicitudes();
         adapter = new PubliAdapter(list);
         recyclerView.setAdapter(adapter);
     }

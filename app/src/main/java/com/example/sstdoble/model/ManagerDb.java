@@ -186,7 +186,7 @@ public class ManagerDb {
         return resultado;
     }
 
-    public List<PubliBlog> obtenerSolicitudes(CrearGestion gestion) {
+    public List<PubliBlog> obtenerSolicitudes() {
         List<PubliBlog> lista = new ArrayList<>();
         openDbRead();
 
