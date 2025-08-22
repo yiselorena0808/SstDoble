@@ -74,21 +74,19 @@ public class FormChequeo extends AppCompatActivity {
         ApiService apiService = ApiClient.getClient(token).create(ApiService.class);
 
         // Ahora pedimos una respuesta JSON, no Void
-        Call<ApiResponse> call = apiService.crearListaChequeo(nuevaLista);
+        Call<ApiResponse<CrearListaChequeo>> call = apiService.crearListaChequeo(nuevaLista);
 
-        call.enqueue(new Callback<ApiResponse>() {
+        call.enqueue(new Callback<ApiResponse<CrearListaChequeo>>() {
             @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+            public void onResponse(Call<ApiResponse<CrearListaChequeo>> call, Response<ApiResponse<CrearListaChequeo>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(FormChequeo.this, "Guardado en API exitosamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FormChequeo.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(FormChequeo.this, ListaChequeo.class));
-                } else {
-                    Toast.makeText(FormChequeo.this, "Error en API: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<CrearListaChequeo>> call, Throwable t) {
                 Toast.makeText(FormChequeo.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

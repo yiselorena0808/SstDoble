@@ -1,12 +1,10 @@
 package com.example.sstdoble.api;
 
-import com.example.sstdoble.controller.CrearListaChequeo;
-
-public class ApiResponse {
+public class ApiResponse<T> {
     private String msj;
-    private CrearListaChequeo datos;
+    private T datos;
 
     public String getMsj() { return msj; }
-    public CrearListaChequeo getDatos() { return datos; }
+    public T getDatos() { return datos; }
 }
 
