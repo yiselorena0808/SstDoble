@@ -1,23 +1,46 @@
 package com.example.sstdoble.controller;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CrearReportes {
 
     private int id;
+
+    @SerializedName("nombre_usuario")
     private String nombreUsuario;
+
+    @SerializedName("cargo")
     private String cargo;
+
+    @SerializedName("cedula")
     private String cedula;
+
+    @SerializedName("fecha")
     private String fecha;
+
+    @SerializedName("lugar")
     private String lugar;
+
+    @SerializedName("descripcion")
     private String descripcion;
+
+    @SerializedName("imagen")
     private String imagen;
+
+    @SerializedName("archivos")
     private String archivos;
+
+    @SerializedName("estado")
     private String estado;
 
+    // Constructor vacío
     public CrearReportes() {
     }
 
-    public CrearReportes(int id, String nombreUsuario, String cargo, String cedula, String fecha, String lugar,
-                         String descripcion, String imagen, String archivos, String estado) {
+    // Constructor completo
+    public CrearReportes(int id, String nombreUsuario, String cargo, String cedula,
+                              String fecha, String lugar, String descripcion,
+                              String imagen, String archivos, String estado) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.cargo = cargo;
@@ -128,4 +151,3 @@ public class CrearReportes {
                 '}';
     }
 }
-

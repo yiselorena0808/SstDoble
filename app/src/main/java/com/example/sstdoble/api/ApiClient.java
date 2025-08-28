@@ -11,6 +11,7 @@ import java.io.IOException;
 public class ApiClient {
     private static final String BASE_URL = "https://backsst.onrender.com/";
     private static Retrofit retrofit = null;
+    private static String currentToken = "";
 
     public static Retrofit getClient(String token) {
         OkHttpClient client = new OkHttpClient.Builder()
@@ -18,20 +19,23 @@ public class ApiClient {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request().newBuilder()
-                                .addHeader("Authorization", "Bearer " + token) //  token JWT
+                                .addHeader("Authorization", "Bearer " + token) // token JWT
                                 .build();
                         return chain.proceed(request);
                     }
                 })
                 .build();
 
-        if (retrofit == null) {
+        //  validación del token token
+        if (retrofit == null || !currentToken.equals(token)) {
+            currentToken = token;
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl("https://backsst.onrender.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
         }
+
         return retrofit;
     }
 }

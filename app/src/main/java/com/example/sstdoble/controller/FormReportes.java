@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sstdoble.api.ApiClient;
 import com.example.sstdoble.api.ApiResponse;
 import com.example.sstdoble.api.ApiService;
-import com.example.sstdoble.controller.CrearListaReportes;
 import com.example.sstdoble.databinding.ActivityFormReporteBinding;
 
 import retrofit2.Call;
@@ -24,9 +23,12 @@ public class FormReportes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Inflar el layout con ViewBinding
         binding = ActivityFormReporteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Acción al hacer clic en el botón Guardar
         binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,12 +50,13 @@ public class FormReportes extends AppCompatActivity {
 
         if (nombreUsuario.isEmpty() || cargo.isEmpty() || cedula.isEmpty() ||
                 fecha.isEmpty() || lugar.isEmpty() || descripcion.isEmpty() || estado.isEmpty()) {
-            Toast.makeText(this, "Por favor completa todos los campos obligatorios.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Por favor completa todos los campos.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        CrearListaReportes nuevoReporte = new CrearListaReportes();
-        nuevoReporte.setId(0); // si backend autogenera el ID
+        // Crear objeto con los mismos campos que espera el backend
+        CrearReportes nuevoReporte = new CrearReportes();
+        nuevoReporte.setId(14); // <-- igual que en FormChequeo, id manual
         nuevoReporte.setNombreUsuario(nombreUsuario);
         nuevoReporte.setCargo(cargo);
         nuevoReporte.setCedula(cedula);
@@ -64,22 +67,24 @@ public class FormReportes extends AppCompatActivity {
         nuevoReporte.setArchivos(archivos);
         nuevoReporte.setEstado(estado);
 
-        String token = "TOKEN_JWT_VALIDO"; // reemplazar por tu token real
+        String token = "TOKEN_JWT_VALIDO";
 
         ApiService apiService = ApiClient.getClient(token).create(ApiService.class);
-        Call<ApiResponse<CrearListaReportes>> call = apiService.crearReporte(nuevoReporte);
 
-        call.enqueue(new Callback<ApiResponse<CrearListaReportes>>() {
+        // Ahora pedimos una respuesta JSON, no Void
+        Call<ApiResponse<CrearReportes>> call = apiService.crearReporte(nuevoReporte);
+
+        call.enqueue(new Callback<ApiResponse<CrearReportes>>() {
             @Override
-            public void onResponse(Call<ApiResponse<CrearListaReportes>> call, Response<ApiResponse<CrearListaReportes>> response) {
+            public void onResponse(Call<ApiResponse<CrearReportes>> call, Response<ApiResponse<CrearReportes>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(FormReportes.this, "Reporte guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FormReportes.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(FormReportes.this, ListaReportes.class));
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse<CrearListaReportes>> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<CrearReportes>> call, Throwable t) {
                 Toast.makeText(FormReportes.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

@@ -59,6 +59,31 @@
             android:orientation="vertical">
 
             <!-- Campos de formulario (igual como los pasaste) -->
+
+            <!-- ID del reporte -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ID Reporte:"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etId"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="ID (autogenerado)"
+                    android:background="@android:color/white"
+                    android:padding="8dp"
+                    android:enabled="true"
+                    android:inputType="number" />
+            </LinearLayout>
             <!-- Nombre Usuario -->
             <LinearLayout
                 android:layout_width="match_parent"

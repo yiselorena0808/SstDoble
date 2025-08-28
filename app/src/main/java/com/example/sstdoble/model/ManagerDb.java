@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.sstdoble.controller.CrearGestion;
 import com.example.sstdoble.controller.CrearListaChequeo;
-import com.example.sstdoble.controller.CrearListaReportes;
+import com.example.sstdoble.controller.CrearReportes;
 import com.example.sstdoble.controller.ListaActividadesItem;
 import com.example.sstdoble.controller.ListaChequeoItem;
 import com.example.sstdoble.controller.ListaReporterItem;
@@ -90,7 +90,7 @@ public class ManagerDb {
     }
 
     // ============ REPORTES ============
-    public long insertarReporte(CrearListaReportes reporte) {
+    public long insertarReporte(CrearReportes reporte) {
         openDbWrite();
         ContentValues values = new ContentValues();
         values.put("nombre_usuario", reporte.getNombreUsuario());

@@ -1,7 +1,7 @@
 package com.example.sstdoble.api;
 
 import com.example.sstdoble.controller.CrearListaChequeo;
-import com.example.sstdoble.controller.CrearListaReportes;
+import com.example.sstdoble.controller.CrearReportes;
 import com.example.sstdoble.controller.CrearGestion;
 
 import java.util.List;
@@ -18,10 +18,13 @@ public interface ApiService {
     Call<List<CrearListaChequeo>> getListasChequeo();
 
     @POST("crearReporte")
-    Call<ApiResponse<CrearListaReportes>> crearReporte(@Body CrearListaReportes reporte);
+    Call<ApiResponse<CrearReportes>> crearReporte(@Body CrearReportes reporte);
 
     @GET("listarReportes")
-    Call<List<CrearListaReportes>> getReportes();
+    Call<List<CrearReportes>> getReportes();
+    @POST("login")
+    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+
     @POST("crearGestion")
     Call<ApiResponse<CrearGestion>> crearGestion(@Body CrearGestion gestion);
 

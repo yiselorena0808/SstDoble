@@ -2,74 +2,109 @@ package com.example.sstdoble.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sstdoble.R;
+import com.example.sstdoble.api.ApiService;
 import com.example.sstdoble.databinding.ActivityMainBinding;
 
-import android.util.Patterns;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.example.sstdoble.api.LoginRequest;
+import com.example.sstdoble.api.LoginResponse;
+
 
 
 public class MainActivity extends AppCompatActivity {
-    Button btnLogin,btnRegistrarse,btnOlvido;
-    EditText etCorreo, etPassword;
 
     ActivityMainBinding binding;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        etCorreo = findViewById(R.id.etCorreo);
-        etPassword = findViewById(R.id.etPassword);
-        btnLogin = findViewById(R.id.btnLogin);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String correo = binding.etCorreo.getText().toString().trim();
-                String password = binding.etPassword.getText().toString().trim();
+        // Configurar Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://backsst.onrender.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-                if (correo.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Debe completar ambos campos", Toast.LENGTH_SHORT).show();
-                }
-                    if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                        Toast.makeText(MainActivity.this, "Correo no válido", Toast.LENGTH_SHORT).show();
-                        return;
+        apiService = retrofit.create(ApiService.class);
+
+        // Botón Login
+        binding.btnLogin.setOnClickListener(v -> {
+            String correo = binding.etCorreo.getText().toString().trim();
+            String password = binding.etPassword.getText().toString().trim();
+
+            if (correo.isEmpty() || password.isEmpty()) {
+                Toast.makeText(MainActivity.this, "Debe completar ambos campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+                Toast.makeText(MainActivity.this, "Correo no válido", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 👉 Consumir API
+            loginUser(correo, password);
+        });
+
+        // Botón Olvido
+        binding.btnOlvido.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, Registrarme.class))
+        );
+
+        // Botón Registrarse
+        binding.btnRegistrarse.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, Registrarme.class))
+        );
+    }
+
+    private void loginUser(String correo, String password) {
+        LoginRequest request = new LoginRequest(correo, password);
+
+        Call<LoginResponse> call = apiService.login(request);
+
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    LoginResponse loginResponse = response.body();
+
+                    if (loginResponse.isSuccess()) {
+                        Toast.makeText(MainActivity.this, "Bienvenido " + loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+
+                        // 🚀 Ir a Menu si el login es correcto
+                        Intent intent = new Intent(MainActivity.this, Menu.class);
+                        intent.putExtra("correo", correo);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error: " + loginResponse.getMessage(), Toast.LENGTH_LONG).show();
                     }
-
-
-                    Intent intent = new Intent(MainActivity.this, Menu.class);
-                    intent.putExtra("correo", correo);
-                    startActivity(intent);
-
-
+                } else {
+                    Toast.makeText(MainActivity.this, "Credenciales incorrectas o error del servidor", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
-        binding.btnOlvido.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Registrarme.class));
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Fallo en la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        binding.btnRegistrarse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this,Registrarme.class));
-            }
-        });
-
-
-
     }
 }
