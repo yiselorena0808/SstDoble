@@ -1,79 +1,153 @@
 package com.example.sstdoble.controller;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CrearGestion {
-    public String nombre;
-    public String apellido;
-    public int cedula;
-    public String cargo;
-    public String producto;
 
-    public String importancia;
-    public int cantidad;
+    @SerializedName("id_usuario")
+    private int idUsuario;
 
-    public CrearGestion(String nombre, String apellido, String cedula, String cargo, String producto, String cantidad, String importancia){
+    @SerializedName("nombre")
+    private String nombre;
+
+    @SerializedName("apellido")
+    private String apellido;
+
+    @SerializedName("cedula")
+    private String cedula;
+
+    @SerializedName("cargo")
+    private String cargo;
+
+    @SerializedName("productos")
+    private String productos;
+
+    @SerializedName("cantidad")
+    private String cantidad;
+
+    @SerializedName("importancia")
+    private String importancia;
+
+    @SerializedName("estado")
+    private String estado;
+
+    @SerializedName("fecha_creacion")
+    private String fechaCreacion;
+
+    // 🔹 Constructor con todos los campos
+    public CrearGestion(int idUsuario, String nombre, String apellido, String cedula,
+                      String cargo, String productos, String cantidad,
+                      String importancia, String estado, String fechaCreacion) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.cedula = Integer.parseInt(cedula);
-        this.producto = producto;
-        this.cantidad = Integer.parseInt(cantidad);
-        this.importancia = importancia;
+        this.cedula = cedula;
         this.cargo = cargo;
+        this.productos = productos;
+        this.cantidad = cantidad;
+        this.importancia = importancia;
+        this.estado = estado;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public String getNombre(){
+    // 🔹 Constructor vacío (para Retrofit/Gson)
+    public CrearGestion() {
+    }
+
+    // 🔹 Getters y Setters
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre){this.nombre = nombre;}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public String getApellido(){
+    public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido){this.apellido = apellido;}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-    public int getCedula(){
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula){this.cedula = cedula;}
-
-    public String getProducto(){
-        return producto;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public void setProducto(String producto){this.producto = producto;}
-
-    public String getCargo(){
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo){this.cargo = cargo;}
-
-    public String getImportancia(){
-        return importancia;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public void setImportancia(String importancia){this.importancia=importancia;}
+    public String getProductos() {
+        return productos;
+    }
 
-    public int getCantidad(){
+    public void setProductos(String productos) {
+        this.productos = productos;
+    }
+
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad){this.cantidad = cantidad;}
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
 
+    public String getImportancia() {
+        return importancia;
+    }
+
+    public void setImportancia(String importancia) {
+        this.importancia = importancia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
 
     @Override
-    public String toString(){
-        return "CrearGestion" +
-                "nombre="+ nombre +
-                ", apellido=" + apellido +
-                ", cedula=" + cedula +
-                ", cargo=" + cargo +
-                ", producto="+ producto +
-                ", cantidad=" + cantidad +
-                ", importancia=" + importancia + '\'' +
-                "}";
-
+    public String toString() {
+        return "GestionEpp{" +
+                "idUsuario=" + idUsuario +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", productos='" + productos + '\'' +
+                ", cantidad='" + cantidad + '\'' +
+                ", importancia='" + importancia + '\'' +
+                ", estado='" + estado + '\'' +
+                ", fechaCreacion='" + fechaCreacion + '\'' +
+                '}';
     }
 }

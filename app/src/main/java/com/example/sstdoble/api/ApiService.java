@@ -2,6 +2,7 @@ package com.example.sstdoble.api;
 
 import com.example.sstdoble.controller.CrearListaChequeo;
 import com.example.sstdoble.controller.CrearListaReportes;
+import com.example.sstdoble.controller.CrearGestion;
 
 import java.util.List;
 import retrofit2.Call;
@@ -21,4 +22,10 @@ public interface ApiService {
 
     @GET("listarReportes")
     Call<List<CrearListaReportes>> getReportes();
+    @POST("crearGestion")
+    Call<ApiResponse<CrearGestion>> crearGestion(@Body CrearGestion gestion);
+
+    // 🔹 Listar todas las gestiones
+    @GET("listarGestiones")
+    Call<List<CrearGestion>> getGestiones();
 }

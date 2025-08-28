@@ -1,19 +1,42 @@
 package com.example.sstdoble.controller;
 
 public class ListaGestionItem {
+    private int idUsuario;
     private String nombre;
-    private String fecha;
+    private String apellido;
+    private String cedula;
+    private String cargo;
+    private String productos;
+    private int cantidad;
+    private String importancia;
+    private String estado;
+    private String fechaCreacion;
 
-    public ListaGestionItem(String nombre, String fecha) {
+    // Constructor
+    public ListaGestionItem(int idUsuario, String nombre, String apellido, String cedula,
+                            String cargo, String productos, int cantidad, String importancia,
+                            String estado, String fechaCreacion) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.fecha = fecha;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.cargo = cargo;
+        this.productos = productos;
+        this.cantidad = cantidad;
+        this.importancia = importancia;
+        this.estado = estado;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
+    // Getters
+    public int getIdUsuario() { return idUsuario; }
+    public String getNombre() { return nombre; }
+    public String getApellido() { return apellido; }
+    public String getCedula() { return cedula; }
+    public String getCargo() { return cargo; }
+    public String getProductos() { return productos; }
+    public int getCantidad() { return cantidad; }
+    public String getImportancia() { return importancia; }
+    public String getEstado() { return estado; }
+    public String getFechaCreacion() { return fechaCreacion; }
 }

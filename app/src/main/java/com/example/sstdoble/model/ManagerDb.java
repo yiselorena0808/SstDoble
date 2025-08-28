@@ -214,7 +214,6 @@ public class ManagerDb {
         values.put("apellido", gestion.getApellido());
         values.put("cedula", gestion.getCedula());
         values.put("cargo", gestion.getCargo());
-        values.put("producto", gestion.getProducto());
         values.put("cantidad", gestion.getCantidad());
         values.put("importancia", gestion.getImportancia());
 

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Título principal -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalle de Gestión"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:gravity="center"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/white"
+            android:elevation="3dp" /><!-- ID Usuario -->
+        <TextView
+            android:id="@+id/tvIdUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Usuario:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Nombre -->
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Apellido -->
+        <TextView
+            android:id="@+id/tvApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apellido:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Cédula -->
+        <TextView
+            android:id="@+id/tvCedula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cédula:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Cargo -->
+        <TextView
+            android:id="@+id/tvCargo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargo:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Productos -->
+        <TextView
+            android:id="@+id/tvProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Productos:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Cantidad -->
+        <TextView
+            android:id="@+id/tvCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cantidad:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Importancia -->
+        <TextView
+            android:id="@+id/tvImportancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Importancia:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Estado -->
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Fecha Creación -->
+        <TextView
+            android:id="@+id/tvFechaCreacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha Creación:"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -10,6 +10,7 @@
     android:orientation="horizontal"
     android:padding="12dp">
 
+    <!-- Nombre y fecha -->
     <TextView
         android:id="@+id/txtNombreFecha"
         android:layout_width="0dp"
@@ -17,23 +18,29 @@
         android:layout_weight="6"
         android:text="Nombre de usuario - Fecha"
         android:textColor="#000000"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:singleLine="true" />
 
+    <!-- Botón detalles -->
     <Button
         android:id="@+id/btnDetalles"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:backgroundTint="@color/Verde"
         android:text="Detalles"
+        android:textAllCaps="false"
         android:textColor="@color/white" />
 
+    <!-- Botón de descarga -->
     <ImageButton
-        android:id="@+id/btnDownloadl"
+        android:id="@+id/btnDownload"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:background="@android:color/white"
         android:padding="6dp"
         android:scaleType="center"
         android:src="@android:drawable/stat_sys_download_done"
+        android:contentDescription="Descargar"
         android:backgroundTint="#F44336" />
 </LinearLayout>
