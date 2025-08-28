@@ -1,19 +1,17 @@
 package com.example.sstdoble.api;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginRequest {
-    private String correo_electronico;
-    private String contrasena;
+
+    @SerializedName("correo")
+    private String correo;
+
+    @SerializedName("password")
+    private String password;
 
     public LoginRequest(String correo, String password) {
-        this.correo_electronico = correo;
-        this.contrasena = password;
-    }
-
-    public String getCorreo() {
-        return correo_electronico;
-    }
-
-    public String getPassword() {
-        return contrasena;
+        this.correo = correo;
+        this.password = password;
     }
 }

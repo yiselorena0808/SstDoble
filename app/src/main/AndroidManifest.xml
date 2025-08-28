@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SstDoble"
         tools:targetApi="31">
+
+        <activity
+            android:name=".controller.detalles_gestion"
+            android:exported="false" />
         <activity
             android:name=".controller.Detalles_chequeo"
             android:exported="false" />
@@ -45,7 +49,7 @@
             android:name=".controller.ListaChequeo"
             android:exported="false" />
         <activity
-            android:name=".controller.MainActivity"
+            android:name=".controller.FormReportes"
             android:exported="false" />
         <activity
             android:name=".controller.Blog"
@@ -54,16 +58,16 @@
             android:name=".controller.CrearBlog"
             android:exported="false" />
         <activity
-            android:name=".controller.FormGestion"
+            android:name=".controller.FormChequeo"
             android:exported="false" />
         <activity
-            android:name=".controller.ListaGestion"
+            android:name=".controller.FormGestion"
             android:exported="false" />
         <activity
             android:name=".controller.Menu"
             android:exported="false" />
         <activity
-            android:name=".controller.FormChequeo"
+            android:name=".controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

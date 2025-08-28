@@ -23,7 +23,7 @@ public interface ApiService {
     @GET("listarReportes")
     Call<List<CrearReportes>> getReportes();
     @POST("login")
-    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+    Call<LoginResponse> login(@Body LoginRequest request);
 
     @POST("crearGestion")
     Call<ApiResponse<CrearGestion>> crearGestion(@Body CrearGestion gestion);

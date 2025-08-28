@@ -1,19 +1,20 @@
 package com.example.sstdoble.api;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponse {
-    private boolean success;
-    private String message;
+
+    @SerializedName("token")
     private String token;
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    @SerializedName("msj")
+    private String msj;
 
     public String getToken() {
         return token;
+    }
+
+    public String getMsj() {
+        return msj;
     }
 }

@@ -59,7 +59,7 @@ public class FormChequeo extends AppCompatActivity {
         // Crear objeto con los mismos campos que espera el backend
         // Crear objeto con los mismos campos que espera el backend
         CrearListaChequeo nuevaLista = new CrearListaChequeo();
-        nuevaLista.setIdUsuario(14); // ejemplo, hasta que uses el login real
+        nuevaLista.setIdUsuario(1); // ejemplo, hasta que uses el login real
         nuevaLista.setUsuarioNombre(nombreUsuario);
         nuevaLista.setFecha(fecha);
         nuevaLista.setHora(hora);

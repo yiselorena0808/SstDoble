@@ -56,7 +56,7 @@ public class FormReportes extends AppCompatActivity {
 
         // Crear objeto con los mismos campos que espera el backend
         CrearReportes nuevoReporte = new CrearReportes();
-        nuevoReporte.setId(14); // <-- igual que en FormChequeo, id manual
+        nuevoReporte.setId(1); // <-- igual que en FormChequeo, id manual
         nuevoReporte.setNombreUsuario(nombreUsuario);
         nuevoReporte.setCargo(cargo);
         nuevoReporte.setCedula(cedula);

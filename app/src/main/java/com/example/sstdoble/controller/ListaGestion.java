@@ -82,7 +82,7 @@ public class ListaGestion extends AppCompatActivity {
                                     obj.getString("productos"),
                                     obj.getInt("cantidad"),
                                     obj.getString("importancia"),
-                                    obj.optString("estado"), // puede venir null
+                                    obj.optString("estado"),
                                     obj.getString("fechaCreacion")
                             );
                             listaGestion.add(item);
