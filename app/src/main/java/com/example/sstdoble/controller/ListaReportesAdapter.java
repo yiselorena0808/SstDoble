@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sstdoble.R;
-import com.example.sstdoble.databinding.DetallesReportesBinding;
 
 import java.util.List;
+
 public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdapter.ViewHolder> {
 
     private final Context context;
@@ -29,7 +29,8 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_item_lista_reporte, parent, false);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.activity_item_lista_reporte, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,27 +38,30 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ListaReporterItem item = lista.get(position);
 
-        holder.txtTituloReporte.setText(item.getNombre_usuario() + " - " + item.getFecha());
+        // Igual que en ListaChequeoAdapter → usamos txtNombreFecha
+        holder.txtNombreFecha.setText(item.getNombreUsuario() + " - " + item.getFecha());
 
         holder.btnDetalles.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetallesReportesBinding.class);
+            Intent intent = new Intent(context, DetallesReportes.class);
+
+            // Claves iguales a las que recibe DetallesReportes.java
             intent.putExtra("id", item.getId());
-            intent.putExtra("nombre_usuario", item.getNombre_usuario());
+            intent.putExtra("nombre_usuario", item.getNombreUsuario());
             intent.putExtra("cargo", item.getCargo());
             intent.putExtra("cedula", item.getCedula());
             intent.putExtra("fecha", item.getFecha());
             intent.putExtra("lugar", item.getLugar());
-            intent.putExtra("descripcion", item.getDescripcionreportes());
-            intent.putExtra("imagen", item.getImagenreportes());
+            intent.putExtra("descripcion", item.getDescripcion());
+            intent.putExtra("imagen", item.getImagen());
             intent.putExtra("archivos", item.getArchivos());
             intent.putExtra("estado", item.getEstado());
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // necesario si el context no es una activity
             context.startActivity(intent);
         });
 
         holder.btnDownload.setOnClickListener(v -> {
-            // Implementa aquí la funcionalidad de descarga si deseas
+            // Aquí implementas la descarga si la necesitas
         });
     }
 
@@ -67,13 +71,13 @@ public class ListaReportesAdapter extends RecyclerView.Adapter<ListaReportesAdap
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTituloReporte;
+        TextView txtNombreFecha;
         Button btnDetalles;
         ImageButton btnDownload;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTituloReporte = itemView.findViewById(R.id.tvNombreUsuario);
+            txtNombreFecha = itemView.findViewById(R.id.txtNombreFecha);
             btnDetalles = itemView.findViewById(R.id.btnDetalles);
             btnDownload = itemView.findViewById(R.id.btnDownload);
         }

@@ -78,7 +78,7 @@
                     android:id="@+id/etId"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:hint="ID (autogenerado)"
+                    android:hint="ID "
                     android:background="@android:color/white"
                     android:padding="8dp"
                     android:enabled="true"

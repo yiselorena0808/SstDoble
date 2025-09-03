@@ -1,3 +1,4 @@
+// FormReportes.java
 package com.example.sstdoble.controller;
 
 import android.content.Intent;
@@ -5,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sstdoble.api.ApiClient;
 import com.example.sstdoble.api.ApiResponse;
 import com.example.sstdoble.api.ApiService;
 import com.example.sstdoble.databinding.ActivityFormReporteBinding;
+import com.example.sstdoble.model.ManagerDb;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,16 +22,16 @@ import retrofit2.Response;
 public class FormReportes extends AppCompatActivity {
 
     private ActivityFormReporteBinding binding;
+    private ManagerDb managerDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Inflar el layout con ViewBinding
         binding = ActivityFormReporteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Acción al hacer clic en el botón Guardar
+        managerDb = new ManagerDb(this);
+
         binding.btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +41,18 @@ public class FormReportes extends AppCompatActivity {
     }
 
     private void guardarDatos() {
+        // ID (opcional)
+        Integer id = null;
+        String idText = binding.etId.getText().toString().trim();
+        if (!idText.isEmpty()) {
+            try {
+                id = Integer.parseInt(idText);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "El ID debe ser numérico.", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
         String nombreUsuario = binding.etNombreUsuarioR.getText().toString().trim();
         String cargo = binding.etCargo.getText().toString().trim();
         String cedula = binding.etCedula.getText().toString().trim();
@@ -49,14 +64,15 @@ public class FormReportes extends AppCompatActivity {
         String estado = binding.etEstado.getText().toString().trim();
 
         if (nombreUsuario.isEmpty() || cargo.isEmpty() || cedula.isEmpty() ||
-                fecha.isEmpty() || lugar.isEmpty() || descripcion.isEmpty() || estado.isEmpty()) {
+                fecha.isEmpty() || lugar.isEmpty() || descripcion.isEmpty() ||
+                imagen.isEmpty() || archivos.isEmpty() || estado.isEmpty()) {
             Toast.makeText(this, "Por favor completa todos los campos.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Crear objeto con los mismos campos que espera el backend
+        // Armar objeto
         CrearReportes nuevoReporte = new CrearReportes();
-        nuevoReporte.setId(1); // <-- igual que en FormChequeo, id manual
+        nuevoReporte.setIdUsuario(5);
         nuevoReporte.setNombreUsuario(nombreUsuario);
         nuevoReporte.setCargo(cargo);
         nuevoReporte.setCedula(cedula);
@@ -67,25 +83,45 @@ public class FormReportes extends AppCompatActivity {
         nuevoReporte.setArchivos(archivos);
         nuevoReporte.setEstado(estado);
 
-        String token = "TOKEN_JWT_VALIDO";
+        // 1) Guardar en SQLite local (autoincrementa si no pasamos id)
+        long rowId = managerDb.insertarReporte(nuevoReporte);
+        if (rowId <= 0) {
+            Toast.makeText(this, "No se pudo guardar localmente.", Toast.LENGTH_LONG).show();
+            return;
+        }
 
+        // Si no vino id, usar el autogenerado y mostrarlo
+        if (id == null) {
+            binding.etId.setText(String.valueOf(rowId));
+            nuevoReporte.setIdUsuario((int) rowId);
+        }
+
+        // 2) Enviar al backend
+        String token = "TOKEN_JWT_VALIDO"; // reemplázalo por el de tu login
         ApiService apiService = ApiClient.getClient(token).create(ApiService.class);
 
-        // Ahora pedimos una respuesta JSON, no Void
         Call<ApiResponse<CrearReportes>> call = apiService.crearReporte(nuevoReporte);
-
         call.enqueue(new Callback<ApiResponse<CrearReportes>>() {
             @Override
-            public void onResponse(Call<ApiResponse<CrearReportes>> call, Response<ApiResponse<CrearReportes>> response) {
+            public void onResponse(@NonNull Call<ApiResponse<CrearReportes>> call,
+                                   @NonNull Response<ApiResponse<CrearReportes>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(FormReportes.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FormReportes.this,
+                            "Guardado en servidor: " + response.body().getMsj(),
+                            Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(FormReportes.this, ListaReportes.class));
+                } else {
+                    Toast.makeText(FormReportes.this,
+                            "Error del servidor: " + response.code(),
+                            Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse<CrearReportes>> call, Throwable t) {
-                Toast.makeText(FormReportes.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            public void onFailure(@NonNull Call<ApiResponse<CrearReportes>> call, @NonNull Throwable t) {
+                Toast.makeText(FormReportes.this,
+                        "Error de conexión: " + t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

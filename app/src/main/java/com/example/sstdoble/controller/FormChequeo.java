@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sstdoble.api.ApiClient;
@@ -78,7 +79,7 @@ public class FormChequeo extends AppCompatActivity {
 
         call.enqueue(new Callback<ApiResponse<CrearListaChequeo>>() {
             @Override
-            public void onResponse(Call<ApiResponse<CrearListaChequeo>> call, Response<ApiResponse<CrearListaChequeo>> response) {
+            public void onResponse(@NonNull Call<ApiResponse<CrearListaChequeo>> call, @NonNull Response<ApiResponse<CrearListaChequeo>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Toast.makeText(FormChequeo.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(FormChequeo.this, ListaChequeo.class));

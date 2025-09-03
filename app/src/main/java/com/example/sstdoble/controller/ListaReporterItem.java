@@ -1,10 +1,9 @@
 package com.example.sstdoble.controller;
 
-
 public class ListaReporterItem {
 
     private int id;
-    private String nombre_usuario;
+    private String nombreUsuario;
     private String cargo;
     private String cedula;
     private String fecha;
@@ -14,10 +13,10 @@ public class ListaReporterItem {
     private String archivos;
     private String estado;
 
-    public ListaReporterItem(int id, String nombre_usuario, String cargo, String cedula, String fecha, String lugar,
-                             String descripcion, String imagen, String archivos, String estado) {
+    public ListaReporterItem(int id, String nombreUsuario, String cargo, String cedula, String fecha,
+                             String lugar, String descripcion, String imagen, String archivos, String estado) {
         this.id = id;
-        this.nombre_usuario = nombre_usuario;
+        this.nombreUsuario = nombreUsuario;
         this.cargo = cargo;
         this.cedula = cedula;
         this.fecha = fecha;
@@ -32,8 +31,8 @@ public class ListaReporterItem {
         return id;
     }
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
     public String getCargo() {
@@ -52,11 +51,11 @@ public class ListaReporterItem {
         return lugar;
     }
 
-    public String getDescripcionreportes() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public String getImagenreportes() {
+    public String getImagen() {
         return imagen;
     }
 

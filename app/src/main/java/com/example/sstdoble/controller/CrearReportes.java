@@ -4,7 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class CrearReportes {
 
-    private int id;
+    @SerializedName("id_reporte")
+    private Integer id;
+
+    @SerializedName("id_usuario")   // 👈 agregado
+    private Integer idUsuario;
 
     @SerializedName("nombre_usuario")
     private String nombreUsuario;
@@ -33,121 +37,38 @@ public class CrearReportes {
     @SerializedName("estado")
     private String estado;
 
-    // Constructor vacío
-    public CrearReportes() {
-    }
+    public CrearReportes() {}
 
-    // Constructor completo
-    public CrearReportes(int id, String nombreUsuario, String cargo, String cedula,
-                              String fecha, String lugar, String descripcion,
-                              String imagen, String archivos, String estado) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.cargo = cargo;
-        this.cedula = cedula;
-        this.fecha = fecha;
-        this.lugar = lugar;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.archivos = archivos;
-        this.estado = estado;
-    }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    // Getters y Setters
+    public Integer getIdUsuario() { return idUsuario; }   // 👈 getter
+    public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; } // 👈 setter
 
-    public int getId() {
-        return id;
-    }
+    public String getNombreUsuario() { return nombreUsuario; }
+    public void setNombreUsuario(String nombreUsuario) { this.nombreUsuario = nombreUsuario; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getCargo() { return cargo; }
+    public void setCargo(String cargo) { this.cargo = cargo; }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
+    public String getFecha() { return fecha; }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public String getCargo() {
-        return cargo;
-    }
+    public String getLugar() { return lugar; }
+    public void setLugar(String lugar) { this.lugar = lugar; }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public String getCedula() {
-        return cedula;
-    }
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
+    public String getArchivos() { return archivos; }
+    public void setArchivos(String archivos) { this.archivos = archivos; }
 
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getArchivos() {
-        return archivos;
-    }
-
-    public void setArchivos(String archivos) {
-        this.archivos = archivos;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "CrearReportes{" +
-                "id=" + id +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", cargo='" + cargo + '\'' +
-                ", cedula='" + cedula + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", lugar='" + lugar + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", imagen='" + imagen + '\'' +
-                ", archivos='" + archivos + '\'' +
-                ", estado='" + estado + '\'' +
-                '}';
-    }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

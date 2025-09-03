@@ -17,7 +17,7 @@ public interface ApiService {
     @GET("listarListasChequeo")
     Call<List<CrearListaChequeo>> getListasChequeo();
 
-    @POST("crearReporte")
+    @POST("crearReporte ")
     Call<ApiResponse<CrearReportes>> crearReporte(@Body CrearReportes reporte);
 
     @GET("listarReportes")

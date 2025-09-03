@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding; // tu XML se llama activity_main.xml (según lo que pegaste)
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void hacerLogin() {
-        String correo = binding.etCorreo.getText().toString().trim();
-        String password = binding.etPassword.getText().toString().trim();
+        String correo = binding.etCorreoElectronico.getText().toString().trim();
+        String password = binding.etcontrasena.getText().toString().trim();
 
         if (correo.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         LoginRequest request = new LoginRequest(correo, password);
 
-        ApiService apiService = ApiClient.getClient(null).create(ApiService.class);
+        // ✅ Llamada corregida: ahora ApiClient ya no necesita parámetro
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
         Call<LoginResponse> call = apiService.login(request);
 
         call.enqueue(new Callback<LoginResponse>() {
@@ -78,18 +79,21 @@ public class MainActivity extends AppCompatActivity {
                                 .putString("token", token)
                                 .apply();
 
-                        startActivity(new Intent(MainActivity.this, MainActivity.class));
+                        // Ir a menu
+                        startActivity(new Intent(MainActivity.this, Menu.class));
                         finish();
                     } else {
-                        // ⚠️ Respuesta sin token → credenciales inválidas
-                        Toast.makeText(MainActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                        String mensaje = loginResponse.getMsj();
+                        if (mensaje == null || mensaje.trim().isEmpty()) {
+                            mensaje = "Credenciales incorrectas"; // valor por defecto
+                        }
+                        Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
                     Toast.makeText(MainActivity.this, "Error: " + response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
-
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {

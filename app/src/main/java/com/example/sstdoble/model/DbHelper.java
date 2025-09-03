@@ -27,6 +27,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABLA_SOLICITUDES);
         db.execSQL("DROP TABLE IF EXISTS " + Constantes.TABLA_BLOG);
 
+        // 🔹 Vuelves a crear las tablas
+        onCreate(db);
     }
-
 }

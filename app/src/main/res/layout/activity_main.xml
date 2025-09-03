@@ -17,14 +17,14 @@
     </ImageView>
 
     <EditText
-        android:id="@+id/etCorreo"
+        android:id="@+id/etCorreoElectronico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Correo"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etcontrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
