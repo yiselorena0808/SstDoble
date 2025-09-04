@@ -140,10 +140,8 @@ public class ManagerDb {
         openDbWrite();
         ContentValues values = new ContentValues();
         values.put("usuario", actividad.getNombreActividad());
-        values.put("nombre_actividad", actividad.getLugar());
         values.put("fecha", actividad.getFecha());
         values.put("descripcion", actividad.getDescripcion());
-        values.put("evidencia", actividad.getImagenActividad());
 
         long resultado = db.insert(Constantes.TABLA_ACTIVIDADES, null, values);
         cerrarDB();
@@ -164,7 +162,7 @@ public class ManagerDb {
                 String descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"));
                 String evidencia = cursor.getString(cursor.getColumnIndexOrThrow("evidencia"));
 
-                lista.add(new ListaActividadesItem(id, usuario, nombreActividad, fecha, descripcion, evidencia));
+                lista.add(new ListaActividadesItem(id, usuario, nombreActividad, fecha, descripcion, evidencia, evidencia));
             } while (cursor.moveToNext());
         }
 

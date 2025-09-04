@@ -46,6 +46,8 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
             intent.putExtra("fecha", item.getFecha());
             intent.putExtra("descripcion", item.getDescripcion());
             intent.putExtra("evidencia", item.getEvidencia());
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
 

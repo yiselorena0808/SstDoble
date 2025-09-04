@@ -1,5 +1,6 @@
 package com.example.sstdoble.api;
 
+import com.example.sstdoble.controller.CrearActividades;
 import com.example.sstdoble.controller.CrearListaChequeo;
 import com.example.sstdoble.controller.CrearReportes;
 import com.example.sstdoble.controller.CrearGestion;
@@ -31,4 +32,10 @@ public interface ApiService {
     // 🔹 Listar todas las gestiones
     @GET("listarGestiones")
     Call<List<CrearGestion>> getGestiones();
+
+    @POST ("crearActividadLudica")
+    Call<ApiResponse<CrearActividades>> crearActividad(@Body CrearActividades actividad);
+
+    @GET("listarActividadesLudicas")
+    Call<List<CrearActividades>> getActividad ();
 }

@@ -1,34 +1,49 @@
 package com.example.sstdoble.controller;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CrearActividades {
 
-    private int id;
+
+    @SerializedName("id_usuario")
+    private int idUsuario;
+
+    @SerializedName("nombre_usuario")
     private String nombreUsuario;
+
+    @SerializedName("nombre_actividad")
     private String nombreActividad;
+
+    @SerializedName("fecha_actividad")
     private String fechaActividad;
+
+    @SerializedName("descripcion")
     private String descripcion;
-    private String urlEvidencia;
+
+    @SerializedName("archivo_adjunto")
+    private String evidencia;
+
+    @SerializedName("imagen_video")
+    private String imagenVideo;
+
 
     public CrearActividades() {
     }
 
-    public CrearActividades(int id, String nombreUsuario, String nombreActividad, String fechaActividad, String descripcion, String urlEvidencia) {
-        this.id = id;
+
+    public CrearActividades(int idUsuario, String nombreUsuario, String nombreActividad, String fechaActividad, String descripcion, String evidencia, String imagenVideo) {
+
+        this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.nombreActividad = nombreActividad;
         this.fechaActividad = fechaActividad;
         this.descripcion = descripcion;
-        this.urlEvidencia = urlEvidencia;
+        this.evidencia = evidencia;
+        this.imagenVideo = imagenVideo;
     }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    public Number getIdUsuario(){return  idUsuario;}
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -62,23 +77,35 @@ public class CrearActividades {
         this.descripcion = descripcion;
     }
 
-    public String getUrlEvidencia() {
-        return urlEvidencia;
+    public String getEvidencia() {
+        return evidencia;
     }
 
-    public void setUrlEvidencia(String urlEvidencia) {
-        this.urlEvidencia = urlEvidencia;
+    public void setEvidencia(String evidencia) {
+        this.evidencia = evidencia;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
     public String toString() {
         return "CrearActividadesL{" +
-                "id=" + id +
+                " idUsuario='" + idUsuario + '\'' +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", nombreActividad='" + nombreActividad + '\'' +
                 ", fechaActividad='" + fechaActividad + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", urlEvidencia='" + urlEvidencia + '\'' +
+                ", evidencia='" + evidencia + '\'' +
                 '}';
+    }
+
+    public String getImagenVideo() {
+        return imagenVideo;
+    }
+
+    public void setImagenVideo(String imagenVideo) {
+        this.imagenVideo = imagenVideo;
     }
 }

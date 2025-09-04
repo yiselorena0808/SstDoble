@@ -40,7 +40,7 @@
             android:name=".controller.ListaAsesoramiento"
             android:exported="false" />
         <activity
-            android:name=".controller.CreaActividades"
+            android:name=".controller.MainActivity"
             android:exported="false" />
         <activity
             android:name=".controller.ListaActividades"
@@ -67,7 +67,7 @@
             android:name=".controller.Menu"
             android:exported="false" />
         <activity
-            android:name=".controller.MainActivity"
+            android:name=".controller.CreaActividades"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

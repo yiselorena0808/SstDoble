@@ -4,108 +4,177 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.sstdoble.controller.ListaActividadesItem;
 
+import com.example.sstdoble.api.ApiClient;
+import com.example.sstdoble.api.ApiResponse;
+import com.example.sstdoble.api.ApiService;
+import com.example.sstdoble.databinding.ActivityCreaActividadesBinding;
+import com.google.gson.Gson;
 
-import com.example.sstdoble.R;
-import com.example.sstdoble.model.ManagerDb;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import android.util.Base64;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreaActividades extends AppCompatActivity {
 
-    EditText etUsuario, etNombreActividad, etFecha, etDescripcion;
-    Button btnEnviarEvidencia;
-    Uri imagenUri = null;
-    ManagerDb managerDb;
+    private ActivityCreaActividadesBinding binding;
+    private Uri imagenUri = null;
+    private String imgBase64 = null;
 
     private ActivityResultLauncher<Intent> pickImageLauncher;
+    private ActivityResultLauncher<Intent> takePhotoLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crea_actividades);
+        binding = ActivityCreaActividadesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        etUsuario = findViewById(R.id.etUsuario);
-        etNombreActividad = findViewById(R.id.etNombreActividad);
-        etFecha = findViewById(R.id.etFecha);
-        etDescripcion = findViewById(R.id.etDescripcion);
-        btnEnviarEvidencia = findViewById(R.id.btnEnviarEvidencia);
-
-        managerDb = new ManagerDb(this);
-
+        // Inicializar lanzadores
         pickImageLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         imagenUri = result.getData().getData();
-                        Toast.makeText(this, "Evidencia seleccionada correctamente", Toast.LENGTH_SHORT).show();
+                        binding.ivPreview.setImageURI(imagenUri);
+                        binding.ivPreview.setVisibility(android.view.View.VISIBLE);
+                        imgBase64 = convertirUriABase64(imagenUri);
+                        Toast.makeText(this, "Imagen seleccionada", Toast.LENGTH_SHORT).show();
                     }
-                }
-        );
+                });
 
-        btnEnviarEvidencia.setOnClickListener(v -> {
-            String usuario = etUsuario.getText().toString().trim();
-            String nombreActividad = etNombreActividad.getText().toString().trim();
-            String fecha = etFecha.getText().toString().trim();
-            String descripcion = etDescripcion.getText().toString().trim();
+        takePhotoLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        imagenUri = result.getData().getData();
+                        binding.ivPreview.setImageURI(imagenUri);
+                        binding.ivPreview.setVisibility(android.view.View.VISIBLE);
+                        imgBase64 = convertirUriABase64(imagenUri);
+                        Toast.makeText(this, "Foto tomada", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-            if (usuario.isEmpty() || nombreActividad.isEmpty() || fecha.isEmpty() || descripcion.isEmpty()) {
-                Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        // Evento de adjuntar
+        binding.ivAdjuntar.setOnClickListener(v -> mostrarOpcionesAdjunto());
 
-            if (imagenUri == null) {
-                Toast.makeText(this, "Debe seleccionar una imagen de evidencia", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            String urlImagen = imagenUri.toString();
-            ListaActividadesItem actividad = new ListaActividadesItem(0, usuario, nombreActividad, fecha, descripcion, urlImagen);
-
-            long resultado = managerDb.insertarActividad(actividad);
-
-            if (resultado > 0) {
-                Toast.makeText(this, "Actividad guardada correctamente", Toast.LENGTH_SHORT).show();
-                limpiarCampos();
-            } else {
-                Toast.makeText(this, "Error al guardar la actividad", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnEnviarEvidencia.setOnLongClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickImageLauncher.launch(intent);
-            return true;
-        });
-
-        cargarDatosSiExisten();
+        // Botón enviar
+        binding.btnEnviarEvidencia.setOnClickListener(v -> guardarActividad());
     }
 
-    private void limpiarCampos() {
-        etUsuario.setText("");
-        etNombreActividad.setText("");
-        etFecha.setText("");
-        etDescripcion.setText("");
-        imagenUri = null;
+    private void mostrarOpcionesAdjunto() {
+        String[] opciones = {"Elegir de galería", "Tomar foto"};
+        new AlertDialog.Builder(this)
+                .setTitle("Adjuntar evidencia")
+                .setItems(opciones, (dialog, which) -> {
+                    if (which == 0) {
+                        abrirGaleria();
+                    } else {
+                        abrirCamara();
+                    }
+                }).show();
     }
 
-    private void cargarDatosSiExisten() {
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("nombreActividad")) {
-            etUsuario.setText(intent.getStringExtra("usuario"));
-            etNombreActividad.setText(intent.getStringExtra("nombreActividad"));
-            etFecha.setText(intent.getStringExtra("fecha"));
-            etDescripcion.setText(intent.getStringExtra("descripcion"));
-            String urlImagen = intent.getStringExtra("evidencia");
-            if (urlImagen != null) {
-                imagenUri = Uri.parse(urlImagen);
-            }
+    private void abrirGaleria() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickImageLauncher.launch(intent);
+    }
+
+    private void abrirCamara() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePhotoLauncher.launch(intent);
+    }
+
+    private String convertirUriABase64(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            byte[] bytes = getBytes(inputStream);
+            return Base64.encodeToString(bytes, Base64.DEFAULT);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+    }
+
+    private byte[] getBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
+    }
+
+    private void guardarActividad() {
+        if (imgBase64 == null) {
+            Toast.makeText(this, "Debe seleccionar o tomar una foto", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        String usuario = binding.etUsuario.getText().toString().trim();
+        String nombreActividad = binding.etNombreActividad.getText().toString().trim();
+        String fecha = binding.etFecha.getText().toString().trim();
+        String descripcion = binding.etDescripcion.getText().toString().trim();
+        int idUsuario = 1;    //binding.et.getText().toString().trim();
+
+
+        if (usuario.isEmpty() || nombreActividad.isEmpty() || fecha.isEmpty() || descripcion.isEmpty()) {
+            Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiY29ycmVvRWxlY3Ryb25pY28iOiJhbmRyZXNAZXhhbXBsZS5jb20iLCJ0aW1lc3RhbXAiOjE3NTcwMDIyMTI0NzMsImlhdCI6MTc1NzAwMjIxMiwiZXhwIjoxNzU3MDA1ODEyfQ.a_X1YeJMXLWsFFzzPAdx6rGRp1jjXo7GGYq1U0RINl8";
+
+        CrearActividades actividad = new CrearActividades();
+        actividad.setIdUsuario(idUsuario);
+        actividad.setNombreActividad(nombreActividad);
+        actividad.setFechaActividad(fecha);
+        actividad.setDescripcion(descripcion);
+        actividad.setNombreUsuario(usuario);
+        actividad.setImagenVideo(imgBase64);
+        System.out.println(imgBase64);
+        actividad.setEvidencia(imgBase64);
+        Gson gson = new Gson();
+        String jsonBody = gson.toJson(actividad);
+        System.out.println("Body que se enviará: " + jsonBody);
+        ApiService apiService = ApiClient.getClient(token).create(ApiService.class);
+        Call<ApiResponse<CrearActividades>> call = apiService.crearActividad(actividad);
+        //ListaActividadesItem actividad = new ListaActividadesItem(0, usuario, nombreActividad, fecha, descripcion, imgBase64);
+
+        //long resultado = managerDb.insertarActividad(actividad);
+
+
+        call.enqueue(new Callback<ApiResponse<CrearActividades>>() {
+            @Override
+            public void onResponse(@NonNull Call<ApiResponse<CrearActividades>> call, @NonNull Response<ApiResponse<CrearActividades>> response) {
+                System.out.println(response.toString());
+                if (response.isSuccessful() && response.body() != null) {
+
+                    Toast.makeText(CreaActividades.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(CreaActividades.this, ListaChequeo.class));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<CrearActividades>> call, Throwable t) {
+                Toast.makeText(CreaActividades.this, "Error de conexión: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        Toast.makeText(this, "Actividad guardada con evidencia", Toast.LENGTH_SHORT).show();
     }
 }
