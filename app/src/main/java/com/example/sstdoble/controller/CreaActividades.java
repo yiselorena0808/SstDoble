@@ -166,7 +166,7 @@ public class CreaActividades extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
 
                     Toast.makeText(CreaActividades.this, "Guardado: " + response.body().getMsj(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(CreaActividades.this, ListaChequeo.class));
+                    startActivity(new Intent(CreaActividades.this, ListaActividades.class));
                 }
             }
 
