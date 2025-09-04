@@ -41,21 +41,21 @@ public class ListaActividadesAdapter extends RecyclerView.Adapter<ListaActividad
         holder.btnDetalles.setOnClickListener(v -> {
             Intent intent = new Intent(context, CreaActividades.class);
             intent.putExtra("id", item.getId());
-            intent.putExtra("usuario", item.getUsuario());
+            intent.putExtra("nombreUsuario", item.getUsuario());
             intent.putExtra("nombreActividad", item.getNombreActividad());
             intent.putExtra("fecha", item.getFecha());
             intent.putExtra("descripcion", item.getDescripcion());
-            intent.putExtra("evidencia", item.getEvidencia());
+            intent.putExtra("imagen_video", item.getEvidencia());
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
 
-        holder.btnDownload.setOnClickListener(v -> {
-
-
-
-        });
+//        holder.btnDownload.setOnClickListener(v -> {
+//
+//
+//
+//        });
     }
 
     @Override

@@ -50,7 +50,7 @@ public class ListaActividades extends AppCompatActivity {
         // Asignar el adapter con la lista desde SQLite
         adapter = new ListaActividadesAdapter(this, listaActividades);
         recyclerView.setAdapter(adapter);
-
+        obtenerActividades();
         // Botón para crear nueva actividad
         binding.btncrear.setOnClickListener(v -> {
             startActivity(new Intent(ListaActividades.this, CreaActividades.class));
